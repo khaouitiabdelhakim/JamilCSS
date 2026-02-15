@@ -1,12 +1,15 @@
 {
-  "name": "jamil-css",
+  "name": "jamilcss",
   "version": "0.1.0",
   "description": "Utility-first CSS (Tailwind-like) with PostCSS compiler",
   "main": "src/plugin.js",
   "scripts": {
     "build": "cp src/jamil.css dist/jamil.css"
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "fast-glob": "^3.3.2",
     "postcss": "^8.4.35"
@@ -16,6 +19,14 @@
       "require": "./src/plugin.js",
       "default": "./src/plugin.js"
     },
-    "./dist/jamil.css": "./dist/jamil.css"
+    "./dist/jamil.css": "./dist/jamil.css",
+    "./loader": {
+      "require": "./src/loader.js",
+      "default": "./src/loader.js"
+    },
+    "./watch-plugin": {
+      "require": "./src/watch-plugin.js",
+      "default": "./src/watch-plugin.js"
+    }
   }
 }

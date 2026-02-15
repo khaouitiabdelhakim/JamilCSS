@@ -18,7 +18,7 @@ Provided by **[KHAOUITI Apps](https://www.khaouitiapps.com)**
 ### 1. Install
 
 ```bash
-npm install jamil-css
+npm install jamilcss
 ```
 
 ### 2. PostCSS config
@@ -28,18 +28,27 @@ Create `postcss.config.cjs` (or `postcss.config.js`) in your project root:
 ```js
 module.exports = {
   plugins: {
-    "jamil-css": {
-      content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-      cwd: __dirname,
-    },
+    jamilcss: {},
   },
 };
 ```
 
-Next.js (and PostCSS) will call the plugin with this options object; do **not** call `require("jamil-css")({...})` yourself in the config.
+If you add a **`jamil.config.js`** (or `jamil.config.cjs`) in your project root, the plugin will load it automatically. Then you can leave the PostCSS config as above.
+
+**Optional: `jamil.config.js`** in the project root:
+
+```js
+module.exports = {
+  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  cwd: __dirname,
+};
+```
 
 - **content**: globs for files to scan (where you use `j-*` classes).
 - **cwd**: directory to resolve globs from (usually `__dirname`).
+- **cssEntry** (optional): path to the CSS file that contains `@jamilcss` (e.g. `"app/globals.css"`). In development the plugin watches content files and touches this file so the bundler rebuilds; set this if your tool doesn’t pass the source path to PostCSS.
+
+You can still pass options in PostCSS (e.g. `jamilcss: { content: [...], cssEntry: "app/globals.css" }`); they override values from `jamil.config.js`.
 
 ### 3. Use `@jamilcss` in your CSS
 
@@ -116,22 +125,33 @@ Defined in `src/patterns.js`; add more patterns there if you need them.
 
 New utilities are defined in `src/utilities.js` (and optionally mirrored in `src/jamil.css` for reference). Rebuild/publish the package after changes.
 
-## Run the Next.js example
+## Run the Next.js example (JamilCSS)
 
 ```bash
-cd examples/next-app
+cd examples/next-app-tailwind
 npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000). The example uses `@jamilcss` in `app/globals.css` and the PostCSS plugin in `postcss.config.cjs`.
 
+### If style changes don’t show up (live reload)
+
+When you change or add `j-*` classes (e.g. gradients), the generated CSS should update. The plugin uses the **same approach as Tailwind CSS**: PostCSS dependency messages plus, in development, touching the source CSS file when content changes. If styles still don’t update:
+
+1. **Set `cssEntry`** in PostCSS so the plugin knows which file to touch (e.g. if your tool doesn’t pass the source path): `jamilcss: { content: [...], cwd: __dirname, cssEntry: "app/globals.css" }`.
+2. **Restart and clear cache**: `rm -rf .next && npm run dev`.
+3. **Content paths**: ensure **content** globs include the files you edit.
+4. **Debug**: `JAMILCSS_DEBUG=1 npm run dev` to see when the plugin runs.
+
+The PostCSS plugin uses an **in-memory cache** (keyed by content file mtimes) so repeated builds are fast; disable it with `jamilcss: { cache: false }` in PostCSS config if needed.
+
 ## Optional: use prebuilt CSS (no compiler)
 
 If you don’t use PostCSS, you can still import the full utility CSS and use it like a normal stylesheet:
 
 ```tsx
-import "jamil-css/dist/jamil.css";
+import "jamilcss/dist/jamil.css";
 ```
 
 All `j-*` utilities are included; no content scanning. Prefer the compiler setup above for smaller, optimized CSS.
