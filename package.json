@@ -1,0 +1,21 @@
+{
+  "name": "jamil-css",
+  "version": "0.1.0",
+  "description": "Utility-first CSS (Tailwind-like) with PostCSS compiler",
+  "main": "src/plugin.js",
+  "scripts": {
+    "build": "cp src/jamil.css dist/jamil.css"
+  },
+  "files": ["dist", "src"],
+  "dependencies": {
+    "fast-glob": "^3.3.2",
+    "postcss": "^8.4.35"
+  },
+  "exports": {
+    ".": {
+      "require": "./src/plugin.js",
+      "default": "./src/plugin.js"
+    },
+    "./dist/jamil.css": "./dist/jamil.css"
+  }
+}
