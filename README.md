@@ -144,4 +144,4 @@ JamilCSS is **open source** and **open to collaboration**. Contributions, issues
 
 **Provided by [KHAOUITI Apps](https://www.khaouitiapps.com)**
 
-[![Powered by KHAOUITI Apps](https://www.khaouitiapps.com/images/powered_by_khaouitiapps_white.png)](https://www.khaouitiapps.com)
+[![Powered by KHAOUITI Apps](https://www.khaouitiapps.com/images/powered_by_khaouitiapps_black.png)](https://www.khaouitiapps.com)
