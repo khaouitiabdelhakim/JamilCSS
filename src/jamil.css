@@ -32,12 +32,12 @@
 .j-mx-auto { margin-left: auto; margin-right: auto; }
 
 /* ============ Typography ============ */
+/* Bases: xs, sm, base, lg, xl. Scale: j-text-lg-N (N×1.125rem), j-text-sm-N (0.875/N rem), j-text-xl-N (1.25+N×0.25rem). Raw: j-text-{n} = n px. */
 .j-text-xs { font-size: 0.75rem; }
 .j-text-sm { font-size: 0.875rem; }
 .j-text-base { font-size: 1rem; }
 .j-text-lg { font-size: 1.125rem; }
 .j-text-xl { font-size: 1.25rem; }
-.j-text-2xl { font-size: 1.5rem; }
 .j-font-normal { font-weight: 400; }
 .j-font-medium { font-weight: 500; }
 .j-font-bold { font-weight: 700; }
@@ -46,18 +46,43 @@
 .j-text-right { text-align: right; }
 
 /* ============ Colors (text) ============ */
-.j-text-gray-500 { color: #6b7280; }
-.j-text-gray-700 { color: #374151; }
-.j-text-gray-900 { color: #111827; }
+/* Base: j-text-{color}. Shades: j-text-{color}-{0–1000} (regex). gray, blue, red, green, yellow, orange, pink, purple, indigo, teal, cyan, slate. */
 .j-text-white { color: #fff; }
+.j-text-black { color: #000; }
 .j-text-primary { color: #2563eb; }
+.j-text-gray { color: #6b7280; }
+.j-text-blue { color: #3b82f8; }
+.j-text-red { color: #ef4444; }
+.j-text-green { color: #22c55e; }
+.j-text-yellow { color: #eab308; }
+.j-text-orange { color: #f97316; }
+.j-text-pink { color: #ec4899; }
+.j-text-purple { color: #a855f7; }
+.j-text-indigo { color: #6366f1; }
+.j-text-teal { color: #14b8a6; }
+.j-text-cyan { color: #06b6d4; }
+.j-text-slate { color: #64748b; }
 
 /* ============ Colors (background) ============ */
+/* Base: j-bg-{color}. Shades: j-bg-{color}-{0–1000} (regex). */
 .j-bg-white { background-color: #fff; }
-.j-bg-gray-100 { background-color: #f3f4f6; }
-.j-bg-gray-200 { background-color: #e5e7eb; }
+.j-bg-black { background-color: #000; }
 .j-bg-primary { background-color: #2563eb; }
 .j-bg-primary-dark { background-color: #1d4ed8; }
+.j-bg-gray { background-color: #6b7280; }
+.j-bg-blue { background-color: #3b82f8; }
+.j-bg-red { background-color: #ef4444; }
+.j-bg-green { background-color: #22c55e; }
+.j-bg-yellow { background-color: #eab308; }
+.j-bg-orange { background-color: #f97316; }
+.j-bg-pink { background-color: #ec4899; }
+.j-bg-purple { background-color: #a855f7; }
+.j-bg-indigo { background-color: #6366f1; }
+.j-bg-teal { background-color: #14b8a6; }
+.j-bg-cyan { background-color: #06b6d4; }
+.j-bg-slate { background-color: #64748b; }
+.j-bg-gray-100 { background-color: #f3f4f6; }
+.j-bg-gray-200 { background-color: #e5e7eb; }
 
 /* ============ Border & Radius ============ */
 .j-rounded { border-radius: 0.25rem; }
