@@ -32,7 +32,7 @@
 .j-mx-auto { margin-left: auto; margin-right: auto; }
 
 /* ============ Typography ============ */
-/* Bases: xs, sm, base, lg, xl. Scale: j-text-lg-N (N×1.125rem), j-text-sm-N (0.875/N rem), j-text-xl-N (1.25+N×0.25rem). Raw: j-text-{n} = n px. */
+/* Bases: xs, sm, base, lg, xl. Scale: j-text-lg-N, j-text-sm-N, j-text-xl-N. Raw: j-text-{n} = n px; j-text-{n}-{unit} = rem, pt, pc, cm, mm, in, Q. */
 .j-text-xs { font-size: 0.75rem; }
 .j-text-sm { font-size: 0.875rem; }
 .j-text-base { font-size: 1rem; }

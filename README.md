@@ -98,8 +98,31 @@ You don’t define every value: **any number** works and is compiled to pixels.
 | `j-m-{n}`, `j-mt-{n}`, … | `j-m-7`, `j-mb-20` | margin |
 | `j-gap-{n}` | `j-gap-24` | gap: 24px |
 | `j-w-{n}`, `j-h-{n}` | `j-w-200`, `j-h-100` | width, height |
-| `j-text-{n}` | `j-text-14` | font-size: 14px |
+| `j-text-{n}` | `j-text-14`, `j-text-24` | font-size: n px (default unit) |
+| `j-text-{n}-{unit}` | `j-text-24-rem`, `j-text-12-pt` | font-size: n + unit (optional) |
 | `j-rounded-{n}` | `j-rounded-8`, `j-rounded-26`, `j-rounded-28` | border-radius: n px (any number) |
+
+**Text size units** (optional; default is `px`): `rem`, `pt` (points), `pc` (picas), `cm`, `mm`, `in`, `Q` (quarter-millimeters). Example: `j-text-24` = 24px, `j-text-24-rem` = 24rem, `j-text-12-pt` = 12pt.
+
+**Typography scale** (base + regex):
+
+| Pattern | Example | CSS |
+|--------|---------|-----|
+| Bases | `j-text-xs`, `j-text-sm`, `j-text-base`, `j-text-lg`, `j-text-xl` | 0.75rem → 1.25rem |
+| `j-text-lg-{n}` | `j-text-lg-1`, `j-text-lg-2` | font-size: n × 1.125rem |
+| `j-text-sm-{n}` | `j-text-sm-1`, `j-text-sm-2` | font-size: 0.875÷n rem |
+| `j-text-xl-{n}` | `j-text-xl-1`, `j-text-xl-2` | font-size: 1.25 + n×0.25rem |
+
+**Colors** (base + regex, shades 0–1000 map to 50–950):
+
+| Pattern | Example | CSS |
+|--------|---------|-----|
+| Base | `j-text-blue`, `j-bg-pink` | text/background = 500 shade |
+| `j-text-{color}-{n}` | `j-text-gray-700`, `j-text-pink-400` | color: palette shade |
+| `j-bg-{color}-{n}` | `j-bg-blue-100`, `j-bg-gray-900` | background-color |
+| `j-border-{color}-{n}` | `j-border-pink-400` | border-color |
+
+Color names: **gray, blue, red, green, yellow, orange, pink, purple, indigo, teal, cyan, slate** (plus `j-text-white`, `j-text-black`, `j-text-primary`, etc.).
 
 For buttons with a gradient background, add `j-overflow-hidden` so the gradient is clipped to the rounded corners (e.g. `j-rounded-28 j-overflow-hidden`).
 
@@ -117,13 +140,13 @@ Defined in `src/patterns.js`; add more patterns there if you need them.
 | Layout    | `j-flex`, `j-flex-col`, `j-grid`, `j-hidden` |
 | Flexbox   | `j-items-center`, `j-justify-between`, `j-gap-4` |
 | Spacing   | `j-p-4`, `j-m-2`, `j-px-4`, `j-py-2`, `j-mx-auto` |
-| Typography| `j-text-lg`, `j-font-bold`, `j-text-center` |
-| Colors    | `j-text-gray-700`, `j-bg-primary`, `j-bg-gray-100` |
-| Border    | `j-rounded`, `j-rounded-lg`, `j-border` |
+| Typography| `j-text-xs`–`j-text-xl`, `j-text-lg-N`, `j-text-sm-N`, `j-text-xl-N`, `j-font-bold`, `j-text-center` |
+| Colors    | `j-text-{color}`, `j-text-{color}-{0–1000}`, `j-bg-{color}`, `j-bg-{color}-{0–1000}`, `j-border-{color}-{0–1000}` |
+| Border    | `j-rounded`, `j-rounded-lg`, `j-border`, `j-border-pink-400` |
 | Shadow    | `j-shadow-sm`, `j-shadow-md` |
 | Width     | `j-w-full`, `j-max-w-md`, `j-min-h-screen` |
 
-New utilities are defined in `src/utilities.js` (and optionally mirrored in `src/jamil.css` for reference). Rebuild/publish the package after changes.
+New utilities are defined in `src/utilities.js`; patterns (typography scale, color shades, gradients) are in `src/patterns.js`. Reference list in `src/jamil.css`. Rebuild/publish the package after changes.
 
 ## Run the Next.js example (JamilCSS)
 
@@ -133,7 +156,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The example uses `@jamilcss` in `app/globals.css` and the PostCSS plugin in `postcss.config.cjs`.
+Open [http://localhost:3000](http://localhost:3000). The example includes a **notification card** (bell icon, mention text, time) and a **profile card** (gradient header, avatar, stats, button), all styled with JamilCSS only (`j-*` classes). It uses `@jamilcss` in `app/globals.css` and the PostCSS plugin in `postcss.config.cjs`.
 
 ### If style changes don’t show up (live reload)
 

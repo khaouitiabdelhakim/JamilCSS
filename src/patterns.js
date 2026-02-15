@@ -63,7 +63,8 @@ module.exports = [
   { test: new RegExp(`^j-min-h-${NUM}$`), generate: (_, n) => `min-height: ${px(n)}` },
   { test: new RegExp(`^j-max-w-${NUM}$`), generate: (_, n) => `max-width: ${px(n)}` },
   { test: new RegExp(`^j-max-h-${NUM}$`), generate: (_, n) => `max-height: ${px(n)}` },
-  // Typography: raw px
+  // Typography: j-text-{number} = px (default); j-text-{number}-{unit} = optional unit (rem, pt, pc, cm, mm, in, Q)
+  { test: /^j-text-(\d+)-(rem|pt|pc|cm|mm|in|Q)$/, generate: (_, n, unit) => `font-size: ${n}${unit}` },
   { test: new RegExp(`^j-text-${NUM}$`), generate: (_, n) => `font-size: ${px(n)}` },
   // j-text-lg-N → N * lg (lg = 1.125rem), e.g. j-text-lg-1 = 1.125rem, j-text-lg-2 = 2.25rem
   { test: /^j-text-lg-(\d+)$/, generate: (_, n) => `font-size: ${Number(n) * 1.125}rem` },
