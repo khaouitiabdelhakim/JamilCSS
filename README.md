@@ -86,6 +86,16 @@ Only classes that appear in your **content** files are compiled into the final C
 </div>
 ```
 
+### Dark / light theme (Tailwind-style variants)
+
+Use **`j-dark:`** and **`j-light:`** prefixes so styles apply only when an ancestor has class `dark` or `light` (e.g. on `<html>`). Add `class="dark"` or `class="light"` to your root element based on user preference or system `prefers-color-scheme`.
+
+```tsx
+<div className="j-bg-white j-dark:j-bg-gray-900 j-text-gray-900 j-dark:j-text-gray-100">
+  Content adapts to theme
+</div>
+```
+
 ## Generic numeric utilities (any number in px)
 
 You don’t define every value: **any number** works and is compiled to pixels.
@@ -143,6 +153,7 @@ Defined in `src/patterns.js`; add more patterns there if you need them.
 | Typography| `j-text-xs`–`j-text-xl`, `j-text-lg-N`, `j-text-sm-N`, `j-text-xl-N`, `j-font-bold`, `j-text-center` |
 | Colors    | `j-text-{color}`, `j-text-{color}-{0–1000}`, `j-bg-{color}`, `j-bg-{color}-{0–1000}`, `j-border-{color}-{0–1000}` |
 | Border    | `j-rounded`, `j-rounded-lg`, `j-border`, `j-border-pink-400` |
+| Theme     | `j-dark:j-bg-gray-900`, `j-light:j-text-black` (when ancestor has `.dark` / `.light`) |
 | Shadow    | `j-shadow-sm`, `j-shadow-md` |
 | Width     | `j-w-full`, `j-max-w-md`, `j-min-h-screen` |
 

@@ -50,15 +50,32 @@ function setupContentWatcher(cssFilePath, contentDirs) {
   }
 }
 
-// Match j-* classes including gradient with [#hex] (brackets, #)
-const J_CLASS_REGEX = /\bj-[a-zA-Z0-9_\-\[\]#]+/g;
+// Match j-* classes including gradient with [#hex], and variant prefixes (e.g. j-dark:j-bg-gray-900)
+const J_CLASS_REGEX = /\bj-[a-zA-Z0-9_\-\[\]#:]+/g;
 
-/** Selector for a class name: use [class~="..." i] when name contains [ or ] so hex casing (e.g. #FCB045) always matches */
+const DARK_PREFIX = "j-dark:";
+const LIGHT_PREFIX = "j-light:";
+
+/** Escape class for CSS selector: [ ] need attr selector, : needs backslash */
 function selectorForClass(cls) {
   if (/[\[\]]/.test(cls)) {
     return `[class~="${cls.replace(/"/g, '\\"')}" i]`;
   }
-  return "." + cls;
+  return "." + cls.replace(/:/g, "\\:");
+}
+
+/** Resolve a base class (no variant) to its CSS declaration string, or null */
+function getDeclaration(cls, utilities, patterns) {
+  let decl = utilities[cls];
+  if (decl) return decl;
+  for (const { test, generate } of patterns) {
+    const m = cls.match(test);
+    if (m) {
+      decl = generate(cls, ...m.slice(1));
+      if (decl) return decl;
+    }
+  }
+  return null;
 }
 
 /**
@@ -235,18 +252,23 @@ function createPlugin(opts = {}) {
           lines.push(`/* jamilcss DEBUG gradient classes: ${gradientClasses.join(", ")} */`);
         }
         for (const cls of used) {
-          let decl = utilities[cls];
-          if (!decl) {
-            for (const { test, generate } of patterns) {
-              const m = cls.match(test);
-              if (m) {
-                decl = generate(cls, ...m.slice(1));
-                break;
-              }
-            }
+          let decl = null;
+          let selector = null;
+
+          if (cls.startsWith(DARK_PREFIX)) {
+            const baseCls = cls.slice(DARK_PREFIX.length);
+            decl = getDeclaration(baseCls, utilities, patterns);
+            if (decl) selector = ".dark " + selectorForClass(cls);
+          } else if (cls.startsWith(LIGHT_PREFIX)) {
+            const baseCls = cls.slice(LIGHT_PREFIX.length);
+            decl = getDeclaration(baseCls, utilities, patterns);
+            if (decl) selector = ".light " + selectorForClass(cls);
+          } else {
+            decl = getDeclaration(cls, utilities, patterns);
+            if (decl) selector = selectorForClass(cls);
           }
-          if (decl) {
-            const selector = selectorForClass(cls);
+
+          if (decl && selector) {
             lines.push(`${selector} { ${decl}; }`);
           }
         }

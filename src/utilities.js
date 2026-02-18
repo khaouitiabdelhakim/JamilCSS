@@ -85,6 +85,7 @@ module.exports = {
   "j-object-cover": "object-fit: cover",
   "j-relative": "position: relative",
   "j-absolute": "position: absolute",
+  "j-fixed": "position: fixed",
   /* Shadow */
   "j-shadow-sm": "box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05)",
   "j-shadow": "box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1)",
