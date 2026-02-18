@@ -50,11 +50,20 @@ function setupContentWatcher(cssFilePath, contentDirs) {
   }
 }
 
-// Match j-* classes including gradient with [#hex], and variant prefixes (e.g. j-dark:j-bg-gray-900)
-const J_CLASS_REGEX = /\bj-[a-zA-Z0-9_\-\[\]#:]+/g;
+// Match j-* classes including gradient with [#hex], variant prefixes (j-dark:, j-light:), and breakpoints (sm:, md:, lg:, xl:, 2xl:)
+const J_CLASS_REGEX = /\b(?:sm:|md:|lg:|xl:|2xl:)?j-[a-zA-Z0-9_\-\[\]#:]+/g;
 
 const DARK_PREFIX = "j-dark:";
 const LIGHT_PREFIX = "j-light:";
+
+// Tailwind-style breakpoints (min-width). Order: longest prefix first for correct stripping.
+const BREAKPOINTS = [
+  { prefix: "2xl:", minWidth: "1536px" },
+  { prefix: "xl:", minWidth: "1280px" },
+  { prefix: "lg:", minWidth: "1024px" },
+  { prefix: "md:", minWidth: "768px" },
+  { prefix: "sm:", minWidth: "640px" },
+];
 
 /** Escape class for CSS selector: [ ] need attr selector, : needs backslash */
 function selectorForClass(cls) {
@@ -254,8 +263,17 @@ function createPlugin(opts = {}) {
         for (const cls of used) {
           let decl = null;
           let selector = null;
+          let mediaQuery = null;
 
-          if (cls.startsWith(DARK_PREFIX)) {
+          const bp = BREAKPOINTS.find((b) => cls.startsWith(b.prefix));
+          if (bp) {
+            const baseCls = cls.slice(bp.prefix.length);
+            decl = getDeclaration(baseCls, utilities, patterns);
+            if (decl) {
+              selector = selectorForClass(cls);
+              mediaQuery = `(min-width: ${bp.minWidth})`;
+            }
+          } else if (cls.startsWith(DARK_PREFIX)) {
             const baseCls = cls.slice(DARK_PREFIX.length);
             decl = getDeclaration(baseCls, utilities, patterns);
             if (decl) selector = ".dark " + selectorForClass(cls);
@@ -269,7 +287,13 @@ function createPlugin(opts = {}) {
           }
 
           if (decl && selector) {
-            lines.push(`${selector} { ${decl}; }`);
+            if (mediaQuery) {
+              lines.push(`@media ${mediaQuery} {`);
+              lines.push(`  ${selector} { ${decl}; }`);
+              lines.push("}");
+            } else {
+              lines.push(`${selector} { ${decl}; }`);
+            }
           }
         }
         const css = lines.join("\n");

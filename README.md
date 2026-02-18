@@ -96,6 +96,16 @@ Use **`j-dark:`** and **`j-light:`** prefixes so styles apply only when an ances
 </div>
 ```
 
+### Responsive breakpoints (Tailwind-style)
+
+Use **`sm:`**, **`md:`**, **`lg:`**, **`xl:`**, **`2xl:`** so styles apply only at that minimum viewport width. Values match Tailwind: `sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px, `2xl` 1536px.
+
+```tsx
+<div className="j-p-4 md:j-p-8 lg:j-flex lg:j-items-center">
+  Padding and layout change by breakpoint
+</div>
+```
+
 ## Generic numeric utilities (any number in px)
 
 You don’t define every value: **any number** works and is compiled to pixels.
@@ -154,6 +164,7 @@ Defined in `src/patterns.js`; add more patterns there if you need them.
 | Colors    | `j-text-{color}`, `j-text-{color}-{0–1000}`, `j-bg-{color}`, `j-bg-{color}-{0–1000}`, `j-border-{color}-{0–1000}` |
 | Border    | `j-rounded`, `j-rounded-lg`, `j-border`, `j-border-pink-400` |
 | Theme     | `j-dark:j-bg-gray-900`, `j-light:j-text-black` (when ancestor has `.dark` / `.light`) |
+| Responsive | `sm:j-p-4`, `md:j-flex`, `lg:j-text-xl`, `xl:j-w-320`, `2xl:j-max-w-2xl` (min-width media queries) |
 | Shadow    | `j-shadow-sm`, `j-shadow-md` |
 | Width     | `j-w-full`, `j-max-w-md`, `j-min-h-screen` |
 
