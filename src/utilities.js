@@ -23,6 +23,7 @@ module.exports = {
   "j-justify-start": "justify-content: flex-start",
   "j-justify-end": "justify-content: flex-end",
   "j-flex-shrink-0": "flex-shrink: 0",
+  "j-flex-1": "flex: 1 1 0%",
   /* Margin special */
   "j-mx-auto": "margin-left: auto; margin-right: auto",
   /* Typography: bases only; use j-text-{n} for px, j-text-lg-N / j-text-sm-N / j-text-xl-N for scale */
@@ -85,9 +86,12 @@ module.exports = {
   "j-overflow-auto": "overflow: auto",
   "j-overflow-scroll": "overflow: scroll",
   "j-object-cover": "object-fit: cover",
+  "j-bg-clip-text": "background-clip: text; -webkit-background-clip: text",
+  "j-text-transparent": "color: transparent; -webkit-text-fill-color: transparent",
   "j-relative": "position: relative",
   "j-absolute": "position: absolute",
   "j-fixed": "position: fixed",
+  "j-sticky": "position: sticky",
   /* Shadow */
   "j-shadow-sm": "box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05)",
   "j-shadow": "box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1)",
@@ -100,6 +104,8 @@ module.exports = {
   "j-min-h-screen": "min-height: 100vh",
   "j-container": "width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem",
   /* Typography extras */
+  "j-no-underline": "text-decoration: none",
+  "j-underline": "text-decoration: underline",
   "j-truncate": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap",
   "j-whitespace-nowrap": "white-space: nowrap",
   "j-whitespace-normal": "white-space: normal",
