@@ -1,11 +1,18 @@
 /**
  * Generic utility patterns: any number in pixels (e.g. j-p-12 → padding: 12px).
+ * Optional unit suffix: j-w-12-rem, j-p-8-vh. Duration: j-animate-fadein-300 (ms), j-animate-fadein-2-s (seconds).
  * Each pattern has: test (RegExp), generate(className, ...captures) → CSS declaration string.
  */
 const NUM = "(\\d+)";
+const UNITS = "(px|rem|em|%|vh|vw|vmin|vmax|cm|mm|in|pt|pc|Q)";
 
 function px(n) {
   return n === "0" ? "0" : `${n}px`;
+}
+
+function value(n, unit) {
+  if (unit === "px") return n === "0" ? "0" : `${n}px`;
+  return `${n}${unit}`;
 }
 
 // Palette: base colors with shades 50–950 (Tailwind-like). j-text-{color} = 500, j-text-{color}-{n} = shade n.
@@ -36,7 +43,35 @@ function colorDecl(prop, colorName, shadeNum) {
 }
 
 module.exports = [
-  // Padding
+  // ----- Padding with optional unit (before numeric-only) -----
+  { test: new RegExp(`^j-p-${NUM}-${UNITS}$`), generate: (_, n, u) => `padding: ${value(n, u)}` },
+  { test: new RegExp(`^j-px-${NUM}-${UNITS}$`), generate: (_, n, u) => `padding-left: ${value(n, u)}; padding-right: ${value(n, u)}` },
+  { test: new RegExp(`^j-py-${NUM}-${UNITS}$`), generate: (_, n, u) => `padding-top: ${value(n, u)}; padding-bottom: ${value(n, u)}` },
+  { test: new RegExp(`^j-pt-${NUM}-${UNITS}$`), generate: (_, n, u) => `padding-top: ${value(n, u)}` },
+  { test: new RegExp(`^j-pr-${NUM}-${UNITS}$`), generate: (_, n, u) => `padding-right: ${value(n, u)}` },
+  { test: new RegExp(`^j-pb-${NUM}-${UNITS}$`), generate: (_, n, u) => `padding-bottom: ${value(n, u)}` },
+  { test: new RegExp(`^j-pl-${NUM}-${UNITS}$`), generate: (_, n, u) => `padding-left: ${value(n, u)}` },
+  // ----- Margin with optional unit -----
+  { test: new RegExp(`^j-m-${NUM}-${UNITS}$`), generate: (_, n, u) => `margin: ${value(n, u)}` },
+  { test: new RegExp(`^j-mx-${NUM}-${UNITS}$`), generate: (_, n, u) => `margin-left: ${value(n, u)}; margin-right: ${value(n, u)}` },
+  { test: new RegExp(`^j-my-${NUM}-${UNITS}$`), generate: (_, n, u) => `margin-top: ${value(n, u)}; margin-bottom: ${value(n, u)}` },
+  { test: new RegExp(`^j-mt-${NUM}-${UNITS}$`), generate: (_, n, u) => `margin-top: ${value(n, u)}` },
+  { test: new RegExp(`^j-mr-${NUM}-${UNITS}$`), generate: (_, n, u) => `margin-right: ${value(n, u)}` },
+  { test: new RegExp(`^j-mb-${NUM}-${UNITS}$`), generate: (_, n, u) => `margin-bottom: ${value(n, u)}` },
+  { test: new RegExp(`^j-ml-${NUM}-${UNITS}$`), generate: (_, n, u) => `margin-left: ${value(n, u)}` },
+  // ----- Size with optional unit -----
+  { test: new RegExp(`^j-w-${NUM}-${UNITS}$`), generate: (_, n, u) => `width: ${value(n, u)}` },
+  { test: new RegExp(`^j-h-${NUM}-${UNITS}$`), generate: (_, n, u) => `height: ${value(n, u)}` },
+  { test: new RegExp(`^j-min-w-${NUM}-${UNITS}$`), generate: (_, n, u) => `min-width: ${value(n, u)}` },
+  { test: new RegExp(`^j-min-h-${NUM}-${UNITS}$`), generate: (_, n, u) => `min-height: ${value(n, u)}` },
+  { test: new RegExp(`^j-max-w-${NUM}-${UNITS}$`), generate: (_, n, u) => `max-width: ${value(n, u)}` },
+  { test: new RegExp(`^j-max-h-${NUM}-${UNITS}$`), generate: (_, n, u) => `max-height: ${value(n, u)}` },
+  { test: new RegExp(`^j-gap-${NUM}-${UNITS}$`), generate: (_, n, u) => `gap: ${value(n, u)}` },
+  { test: new RegExp(`^j-top-${NUM}-${UNITS}$`), generate: (_, n, u) => `top: ${value(n, u)}` },
+  { test: new RegExp(`^j-right-${NUM}-${UNITS}$`), generate: (_, n, u) => `right: ${value(n, u)}` },
+  { test: new RegExp(`^j-bottom-${NUM}-${UNITS}$`), generate: (_, n, u) => `bottom: ${value(n, u)}` },
+  { test: new RegExp(`^j-left-${NUM}-${UNITS}$`), generate: (_, n, u) => `left: ${value(n, u)}` },
+  // ----- Padding (numeric, px default) -----
   { test: new RegExp(`^j-p-${NUM}$`), generate: (_, n) => `padding: ${px(n)}` },
   { test: new RegExp(`^j-px-${NUM}$`), generate: (_, n) => `padding-left: ${px(n)}; padding-right: ${px(n)}` },
   { test: new RegExp(`^j-py-${NUM}$`), generate: (_, n) => `padding-top: ${px(n)}; padding-bottom: ${px(n)}` },
@@ -44,7 +79,7 @@ module.exports = [
   { test: new RegExp(`^j-pr-${NUM}$`), generate: (_, n) => `padding-right: ${px(n)}` },
   { test: new RegExp(`^j-pb-${NUM}$`), generate: (_, n) => `padding-bottom: ${px(n)}` },
   { test: new RegExp(`^j-pl-${NUM}$`), generate: (_, n) => `padding-left: ${px(n)}` },
-  // Margin
+  // ----- Margin -----
   { test: new RegExp(`^j-m-${NUM}$`), generate: (_, n) => `margin: ${px(n)}` },
   { test: new RegExp(`^j-mx-${NUM}$`), generate: (_, n) => `margin-left: ${px(n)}; margin-right: ${px(n)}` },
   { test: new RegExp(`^j-my-${NUM}$`), generate: (_, n) => `margin-top: ${px(n)}; margin-bottom: ${px(n)}` },
@@ -54,9 +89,9 @@ module.exports = [
   { test: new RegExp(`^j-ml-${NUM}$`), generate: (_, n) => `margin-left: ${px(n)}` },
   { test: new RegExp(`^j--mt-${NUM}$`), generate: (_, n) => `margin-top: -${px(n)}` },
   { test: new RegExp(`^j--mb-${NUM}$`), generate: (_, n) => `margin-bottom: -${px(n)}` },
-  // Gap
+  // ----- Gap -----
   { test: new RegExp(`^j-gap-${NUM}$`), generate: (_, n) => `gap: ${px(n)}` },
-  // Size
+  // ----- Size -----
   { test: new RegExp(`^j-w-${NUM}$`), generate: (_, n) => `width: ${px(n)}` },
   { test: new RegExp(`^j-h-${NUM}$`), generate: (_, n) => `height: ${px(n)}` },
   { test: new RegExp(`^j-min-w-${NUM}$`), generate: (_, n) => `min-width: ${px(n)}` },
@@ -68,7 +103,32 @@ module.exports = [
   { test: new RegExp(`^j-right-${NUM}$`), generate: (_, n) => `right: ${px(n)}` },
   { test: new RegExp(`^j-bottom-${NUM}$`), generate: (_, n) => `bottom: ${px(n)}` },
   { test: new RegExp(`^j-left-${NUM}$`), generate: (_, n) => `left: ${px(n)}` },
-  // Typography: j-text-{number} = px (default); j-text-{number}-{unit} = optional unit (rem, pt, pc, cm, mm, in, Q)
+  // ----- Space between (margin on children except first) -----
+  { test: new RegExp(`^j-space-x-${NUM}$`), generate: (_, n) => ({ rule: `.j-space-x-${n} > * + * { margin-left: ${px(n)} }` }) },
+  { test: new RegExp(`^j-space-y-${NUM}$`), generate: (_, n) => ({ rule: `.j-space-y-${n} > * + * { margin-top: ${px(n)} }` }) },
+  // ----- Divide (border between children) -----
+  { test: /^j-divide-x$/, generate: () => ({ rule: ".j-divide-x > * + * { border-left-width: 1px; border-left-style: solid; border-color: inherit }" }) },
+  { test: /^j-divide-y$/, generate: () => ({ rule: ".j-divide-y > * + * { border-top-width: 1px; border-top-style: solid; border-color: inherit }" }) },
+  // ----- Aspect ratio (numeric: j-aspect-16-9) -----
+  { test: /^j-aspect-(\d+)-(\d+)$/, generate: (_, a, b) => `aspect-ratio: ${a} / ${b}` },
+  // ----- Opacity (0-100 or 0-1000 → decimal) -----
+  { test: /^j-opacity-(\d+)$/, generate: (_, n) => { const v = Math.min(1000, Math.max(0, parseInt(n, 10))); const val = v <= 100 ? (v / 100).toFixed(2) : (v / 1000).toFixed(3); return `opacity: ${parseFloat(val)}`; } },
+  // ----- Transition duration: j-duration-{n} = n ms, j-duration-{n}-s = n seconds -----
+  { test: /^j-duration-(\d+)-s$/, generate: (_, n) => `transition-duration: ${n}s` },
+  { test: /^j-duration-(\d+)$/, generate: (_, n) => `transition-duration: ${n}ms` },
+  // ----- Animation: j-animate-{name}-{n} = n ms, j-animate-{name}-{n}-s = n seconds -----
+  { test: /^j-animate-([a-zA-Z0-9]+)-(\d+)-s$/, generate: (_, name, n) => `animation: j-${name} ${n}s ease both` },
+  { test: /^j-animate-([a-zA-Z0-9]+)-(\d+)$/, generate: (_, name, n) => `animation: j-${name} ${n}ms ease both` },
+  // ----- Line height & letter spacing -----
+  { test: /^j-leading-(\d+)$/, generate: (_, n) => `line-height: ${n}` },
+  { test: /^j-leading-(\d+)-(\d+)$/, generate: (_, a, b) => `line-height: ${a}.${b}` },
+  { test: /^j-tracking-(-?\d+)$/, generate: (_, n) => `letter-spacing: ${n === "0" ? "0" : n + "em"}` },
+  // ----- Grid -----
+  { test: new RegExp(`^j-grid-cols-${NUM}$`), generate: (_, n) => `grid-template-columns: repeat(${n}, minmax(0, 1fr))` },
+  { test: new RegExp(`^j-grid-rows-${NUM}$`), generate: (_, n) => `grid-template-rows: repeat(${n}, minmax(0, 1fr))` },
+  { test: new RegExp(`^j-col-span-${NUM}$`), generate: (_, n) => `grid-column: span ${n} / span ${n}` },
+  { test: new RegExp(`^j-row-span-${NUM}$`), generate: (_, n) => `grid-row: span ${n} / span ${n}` },
+  // ----- Typography: j-text-{number} = px (default); j-text-{number}-{unit} = optional unit (rem, pt, pc, cm, mm, in, Q)
   { test: /^j-text-(\d+)-(rem|pt|pc|cm|mm|in|Q)$/, generate: (_, n, unit) => `font-size: ${n}${unit}` },
   { test: new RegExp(`^j-text-${NUM}$`), generate: (_, n) => `font-size: ${px(n)}` },
   // j-text-lg-N → N * lg (lg = 1.125rem), e.g. j-text-lg-1 = 1.125rem, j-text-lg-2 = 2.25rem

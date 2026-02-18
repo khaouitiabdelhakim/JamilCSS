@@ -5,6 +5,8 @@ const postcss = require("postcss");
 const glob = require("fast-glob");
 const utilities = require("./utilities");
 const patterns = require("./patterns");
+const { getAllVariants, parseVariants } = require("./variants");
+const { getKeyframesCSS } = require("./keyframes");
 
 const cache = new Map();
 const CACHE_MAX = 50;
@@ -50,20 +52,8 @@ function setupContentWatcher(cssFilePath, contentDirs) {
   }
 }
 
-// Match j-* classes including gradient with [#hex], variant prefixes (j-dark:, j-light:), and breakpoints (sm:, md:, lg:, xl:, 2xl:)
-const J_CLASS_REGEX = /\b(?:sm:|md:|lg:|xl:|2xl:)?j-[a-zA-Z0-9_\-\[\]#:]+/g;
-
-const DARK_PREFIX = "j-dark:";
-const LIGHT_PREFIX = "j-light:";
-
-// Tailwind-style breakpoints (min-width). Order: longest prefix first for correct stripping.
-const BREAKPOINTS = [
-  { prefix: "2xl:", minWidth: "1536px" },
-  { prefix: "xl:", minWidth: "1280px" },
-  { prefix: "lg:", minWidth: "1024px" },
-  { prefix: "md:", minWidth: "768px" },
-  { prefix: "sm:", minWidth: "640px" },
-];
+// Match stacked variants + j-* (e.g. md:dark:hover:j-w-12-rem, j-animate-fadein-2-s)
+const J_CLASS_REGEX = /\b(?:sm:|md:|lg:|xl:|2xl:|j-dark:|j-light:|hover:|focus:|focus-visible:|active:|disabled:|first:|last:|odd:|even:|group-hover:|motion-reduce:)*j-[a-zA-Z0-9_\-\[\]#:]+/g;
 
 /** Escape class for CSS selector: [ ] need attr selector, : needs backslash */
 function selectorForClass(cls) {
@@ -85,6 +75,39 @@ function getDeclaration(cls, utilities, patterns) {
     }
   }
   return null;
+}
+
+/** Build CSS rule(s) for a class with stacked variants. Returns array of line strings. */
+function buildRule(cls, variantList) {
+  const parsed = parseVariants(cls, variantList);
+  const baseClass = parsed ? parsed.baseClass : cls;
+  const variants = parsed ? parsed.variants : [];
+  const declaration = getDeclaration(baseClass, utilities, patterns);
+  if (!declaration || (typeof declaration === "object" && declaration.rule)) return [];
+
+  const sel = selectorForClass(cls);
+  let themePrefix = "";
+  const pseudos = [];
+  let breakpointQuery = null;
+  let reduceMotionQuery = null;
+  let groupHover = false;
+
+  for (const v of variants) {
+    if (v.type === "breakpoint") breakpointQuery = `(min-width: ${v.minWidth})`;
+    else if (v.type === "theme") themePrefix = (themePrefix ? themePrefix + " " : "") + v.selector;
+    else if (v.type === "pseudo") pseudos.push(v.pseudo);
+    else if (v.type === "media") reduceMotionQuery = v.media;
+    else if (v.type === "group-hover") groupHover = true;
+  }
+
+  let innerSelector = groupHover ? `.group:hover ${sel}` : sel;
+  if (pseudos.length) innerSelector += pseudos.join("");
+  if (themePrefix) innerSelector = themePrefix + " " + innerSelector;
+
+  let block = `${innerSelector} { ${declaration}; }`;
+  if (breakpointQuery) block = `@media ${breakpointQuery} { ${block} }`;
+  if (reduceMotionQuery) block = `@media ${reduceMotionQuery} { ${block} }`;
+  return [block];
 }
 
 /**
@@ -234,6 +257,10 @@ function createPlugin(opts = {}) {
         setupContentWatcher(cssFileToTouch, contentDirs);
       }
       const useCache = opts.cache !== false && process.env.NODE_ENV !== "development";
+      const themeConfig = (loaded && loaded.config && loaded.config.theme) ? loaded.config.theme : {};
+      const breakpointsOverride = themeConfig.breakpoints;
+      const variantList = getAllVariants(breakpointsOverride);
+
       root.walkAtRules("jamilcss", (atRule) => {
         const key = useCache ? contentCacheKey(contentFiles) : null;
         if (useCache && key && cache.has(key)) {
@@ -250,6 +277,13 @@ function createPlugin(opts = {}) {
         }
         const used = scanContent(contentFiles);
         const gradientClasses = [...used].filter((c) => c.includes("gradient"));
+        const animationNames = new Set();
+        [...used].forEach((c) => {
+          const parsed = parseVariants(c, variantList);
+          const base = parsed ? parsed.baseClass : c;
+          const m = base.match(/^j-animate-([a-zA-Z0-9]+)-/);
+          if (m) animationNames.add(m[1]);
+        });
         if (DEBUG) {
           console.log("[jamilcss plugin] total classes:", used.size);
           console.log("[jamilcss plugin] gradient classes:", gradientClasses);
@@ -257,43 +291,26 @@ function createPlugin(opts = {}) {
         const lines = [];
         const ts = new Date().toISOString();
         lines.push(`/* jamilcss ${used.size} classes - ${ts} */`);
+        const keyframesCSS = getKeyframesCSS([...animationNames]);
+        if (keyframesCSS) lines.push(keyframesCSS);
         if (DEBUG && gradientClasses.length) {
           lines.push(`/* jamilcss DEBUG gradient classes: ${gradientClasses.join(", ")} */`);
         }
         for (const cls of used) {
-          let decl = null;
-          let selector = null;
-          let mediaQuery = null;
+          const parsed = parseVariants(cls, variantList);
+          const hasVariants = parsed && parsed.variants.length > 0;
+          const baseClass = parsed ? parsed.baseClass : cls;
+          const decl = getDeclaration(baseClass, utilities, patterns);
+          if (!decl) continue;
 
-          const bp = BREAKPOINTS.find((b) => cls.startsWith(b.prefix));
-          if (bp) {
-            const baseCls = cls.slice(bp.prefix.length);
-            decl = getDeclaration(baseCls, utilities, patterns);
-            if (decl) {
-              selector = selectorForClass(cls);
-              mediaQuery = `(min-width: ${bp.minWidth})`;
-            }
-          } else if (cls.startsWith(DARK_PREFIX)) {
-            const baseCls = cls.slice(DARK_PREFIX.length);
-            decl = getDeclaration(baseCls, utilities, patterns);
-            if (decl) selector = ".dark " + selectorForClass(cls);
-          } else if (cls.startsWith(LIGHT_PREFIX)) {
-            const baseCls = cls.slice(LIGHT_PREFIX.length);
-            decl = getDeclaration(baseCls, utilities, patterns);
-            if (decl) selector = ".light " + selectorForClass(cls);
-          } else {
-            decl = getDeclaration(cls, utilities, patterns);
-            if (decl) selector = selectorForClass(cls);
+          if (typeof decl === "object" && decl.rule) {
+            if (!hasVariants) lines.push(decl.rule);
+            continue;
           }
-
-          if (decl && selector) {
-            if (mediaQuery) {
-              lines.push(`@media ${mediaQuery} {`);
-              lines.push(`  ${selector} { ${decl}; }`);
-              lines.push("}");
-            } else {
-              lines.push(`${selector} { ${decl}; }`);
-            }
+          if (hasVariants) {
+            lines.push(...buildRule(cls, variantList));
+          } else {
+            lines.push(`${selectorForClass(cls)} { ${decl}; }`);
           }
         }
         const css = lines.join("\n");

@@ -82,6 +82,8 @@ module.exports = {
   "j-rounded-full": "border-radius: 50%",
   "j-border-white": "border-color: #fff",
   "j-overflow-hidden": "overflow: hidden",
+  "j-overflow-auto": "overflow: auto",
+  "j-overflow-scroll": "overflow: scroll",
   "j-object-cover": "object-fit: cover",
   "j-relative": "position: relative",
   "j-absolute": "position: absolute",
@@ -90,10 +92,37 @@ module.exports = {
   "j-shadow-sm": "box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05)",
   "j-shadow": "box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1)",
   "j-shadow-md": "box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1)",
-  /* Width / Container (non-numeric) */
+  /* Width / Container */
   "j-w-full": "width: 100%",
   "j-max-w-md": "max-width: 28rem",
   "j-max-w-lg": "max-width: 32rem",
   "j-max-w-xl": "max-width: 36rem",
   "j-min-h-screen": "min-height: 100vh",
+  "j-container": "width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem",
+  /* Typography extras */
+  "j-truncate": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap",
+  "j-whitespace-nowrap": "white-space: nowrap",
+  "j-whitespace-normal": "white-space: normal",
+  "j-break-words": "overflow-wrap: break-word",
+  "j-break-normal": "overflow-wrap: normal",
+  /* Interactivity */
+  "j-cursor-pointer": "cursor: pointer",
+  "j-cursor-not-allowed": "cursor: not-allowed",
+  "j-cursor-default": "cursor: default",
+  "j-pointer-events-none": "pointer-events: none",
+  "j-pointer-events-auto": "pointer-events: auto",
+  "j-select-none": "user-select: none",
+  "j-select-text": "user-select: text",
+  /* Transition */
+  "j-transition": "transition-property: color, background-color, border-color, opacity, box-shadow, transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms",
+  "j-ease-linear": "transition-timing-function: linear",
+  "j-ease-in": "transition-timing-function: cubic-bezier(0.4, 0, 1, 1)",
+  "j-ease-out": "transition-timing-function: cubic-bezier(0, 0, 0.2, 1)",
+  "j-ease-in-out": "transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)",
+  /* Aspect ratio */
+  "j-aspect-video": "aspect-ratio: 16 / 9",
+  "j-aspect-square": "aspect-ratio: 1 / 1",
+  "j-aspect-auto": "aspect-ratio: auto",
+  /* Group (for group-hover parent) */
+  "j-group": "position: relative",
 };

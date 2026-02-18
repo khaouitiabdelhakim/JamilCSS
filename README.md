@@ -2,6 +2,8 @@
 
 Utility-first CSS with the **same mechanism as Tailwind**: use a single directive in your CSS and a PostCSS plugin scans your `.tsx` / `.jsx` (and HTML) and compiles only the `j-*` utility classes you actually use.
 
+**Endless, unstoppable:** one class can do a lot. Use **generic** patterns so you don’t define every value: `j-w-12` (px), `j-w-12-rem`, `j-dark:sm:j-w-12-cm`, `j-animate-fadein-300` (ms), `j-animate-fadein-2-s` (seconds). Stack variants and units to get exactly what you need in one command.
+
 **Open source · Open to collaboration**
 
 Provided by **[KHAOUITI Apps](https://www.khaouitiapps.com)**  
@@ -47,6 +49,7 @@ module.exports = {
 - **content**: globs for files to scan (where you use `j-*` classes).
 - **cwd**: directory to resolve globs from (usually `__dirname`).
 - **cssEntry** (optional): path to the CSS file that contains `@jamilcss` (e.g. `"app/globals.css"`). In development the plugin watches content files and touches this file so the bundler rebuilds; set this if your tool doesn’t pass the source path to PostCSS.
+- **theme** (optional): `theme.breakpoints` — array of `{ prefix: "sm:", minWidth: "640px" }` to override default breakpoints.
 
 You can still pass options in PostCSS (e.g. `jamilcss: { content: [...], cssEntry: "app/globals.css" }`); they override values from `jamil.config.js`.
 
@@ -98,11 +101,39 @@ Use **`j-dark:`** and **`j-light:`** prefixes so styles apply only when an ances
 
 ### Responsive breakpoints (Tailwind-style)
 
-Use **`sm:`**, **`md:`**, **`lg:`**, **`xl:`**, **`2xl:`** so styles apply only at that minimum viewport width. Values match Tailwind: `sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px, `2xl` 1536px.
+Use **`sm:`**, **`md:`**, **`lg:`**, **`xl:`**, **`2xl:`** so styles apply only at that minimum viewport width. Values match Tailwind: `sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px, `2xl` 1536px. Override in **`jamil.config.js`** with `theme: { breakpoints: [ { prefix: "sm:", minWidth: "640px" }, ... ] }`.
 
 ```tsx
 <div className="j-p-4 md:j-p-8 lg:j-flex lg:j-items-center">
   Padding and layout change by breakpoint
+</div>
+```
+
+### Stacked variants
+
+Combine **breakpoints**, **theme**, and **state** in one class: `md:dark:hover:j-w-12`, `sm:focus:j-bg-blue-500`, `j-dark:md:j-p-8-rem`.
+
+### State variants
+
+| Prefix | Applies |
+|--------|--------|
+| `hover:` | `:hover` |
+| `focus:` | `:focus` |
+| `focus-visible:` | `:focus-visible` |
+| `active:` | `:active` |
+| `disabled:` | `:disabled` |
+| `first:` | `:first-child` |
+| `last:` | `:last-child` |
+| `odd:` / `even:` | `:nth-child(odd)` / `:even` |
+| `group-hover:` | when parent with `j-group` is hovered |
+| `motion-reduce:` | `@media (prefers-reduced-motion: reduce)` |
+
+```tsx
+<button className="j-bg-blue-500 hover:j-bg-blue-600 focus:j-opacity-90 j-transition j-duration-200">
+  Click me
+</button>
+<div className="j-group">
+  <span className="group-hover:j-opacity-100 j-opacity-50">Hover parent</span>
 </div>
 ```
 
@@ -121,6 +152,8 @@ You don’t define every value: **any number** works and is compiled to pixels.
 | `j-text-{n}` | `j-text-14`, `j-text-24` | font-size: n px (default unit) |
 | `j-text-{n}-{unit}` | `j-text-24-rem`, `j-text-12-pt` | font-size: n + unit (optional) |
 | `j-rounded-{n}` | `j-rounded-8`, `j-rounded-26`, `j-rounded-28` | border-radius: n px (any number) |
+
+**Arbitrary units** (optional; default is `px`): add **`-{unit}`** to many size/spacing utilities. Units: `px`, `rem`, `em`, `%`, `vh`, `vw`, `vmin`, `vmax`, `cm`, `mm`, `in`, `pt`, `pc`, `Q`. Examples: `j-w-12` = 12px, `j-w-12-rem` = 12rem, `j-w-237-px`, `j-p-8-vh`, `j-dark:sm:j-w-12-cm`. Same for `j-h-*`, `j-p-*`, `j-m-*`, `j-gap-*`, `j-top-*`, `j-right-*`, `j-bottom-*`, `j-left-*`, `j-min-w-*`, `j-min-h-*`, `j-max-w-*`, `j-max-h-*`.
 
 **Text size units** (optional; default is `px`): `rem`, `pt` (points), `pc` (picas), `cm`, `mm`, `in`, `Q` (quarter-millimeters). Example: `j-text-24` = 24px, `j-text-24-rem` = 24rem, `j-text-12-pt` = 12pt.
 
@@ -153,6 +186,41 @@ For buttons with a gradient background, add `j-overflow-hidden` so the gradient 
 
 Defined in `src/patterns.js`; add more patterns there if you need them.
 
+## Animation & transition
+
+**Animation** — `j-animate-{name}-{duration}` (duration in **ms**) or `j-animate-{name}-{n}-s` (seconds). Built-in keyframes: **fadein**, **fadeout**, **spin**, **pulse**, **bounce**, **ping**.
+
+```tsx
+<div className="j-animate-fadein-300">Fade in over 300ms</div>
+<div className="j-animate-spin-2-s">Spin over 2 seconds</div>
+```
+
+**Transition** — `j-transition` (common properties, 150ms), `j-duration-{n}` (ms), `j-duration-{n}-s` (seconds), `j-ease-linear`, `j-ease-in`, `j-ease-out`, `j-ease-in-out`.
+
+## Layout extras
+
+| Pattern / utility | Example | CSS |
+|------------------|---------|-----|
+| `j-space-x-{n}` / `j-space-y-{n}` | `j-space-x-16` | margin between children (horizontal / vertical) |
+| `j-divide-x` / `j-divide-y` | `j-divide-y` | border between children |
+| `j-aspect-video`, `j-aspect-square`, `j-aspect-auto` | — | aspect-ratio |
+| `j-aspect-{a}-{b}` | `j-aspect-16-9` | aspect-ratio: a / b |
+| `j-overflow-auto`, `j-overflow-scroll` | — | overflow |
+| `j-grid-cols-{n}`, `j-grid-rows-{n}` | `j-grid-cols-3` | grid template |
+| `j-col-span-{n}`, `j-row-span-{n}` | `j-col-span-2` | grid column/row span |
+| `j-container` | — | max-width + center + horizontal padding |
+
+## Interactivity & typography
+
+| Category | Examples |
+|----------|----------|
+| Cursor | `j-cursor-pointer`, `j-cursor-not-allowed`, `j-cursor-default` |
+| Pointer / select | `j-pointer-events-none`, `j-select-none`, `j-select-text` |
+| Opacity | `j-opacity-{0-100}` or `j-opacity-{0-1000}` (maps to 0–1) |
+| Line height | `j-leading-{n}` (unitless), `j-leading-{a}-{b}` (e.g. 1.2) |
+| Letter spacing | `j-tracking-{n}` (em; use 0 for 0) |
+| Text overflow | `j-truncate`, `j-whitespace-nowrap`, `j-break-words` |
+
 ## Example utilities (static/semantic)
 
 | Category   | Examples |
@@ -165,8 +233,10 @@ Defined in `src/patterns.js`; add more patterns there if you need them.
 | Border    | `j-rounded`, `j-rounded-lg`, `j-border`, `j-border-pink-400` |
 | Theme     | `j-dark:j-bg-gray-900`, `j-light:j-text-black` (when ancestor has `.dark` / `.light`) |
 | Responsive | `sm:j-p-4`, `md:j-flex`, `lg:j-text-xl`, `xl:j-w-320`, `2xl:j-max-w-2xl` (min-width media queries) |
+| Stacked   | `md:dark:hover:j-w-12`, `sm:focus:j-bg-blue-500` (combine breakpoint + theme + state) |
+| Units     | `j-w-12-rem`, `j-p-8-vh`, `j-duration-2-s`, `j-animate-fadein-300`, `j-animate-spin-2-s` |
 | Shadow    | `j-shadow-sm`, `j-shadow-md` |
-| Width     | `j-w-full`, `j-max-w-md`, `j-min-h-screen` |
+| Width     | `j-w-full`, `j-max-w-md`, `j-min-h-screen`, `j-container` |
 
 New utilities are defined in `src/utilities.js`; patterns (typography scale, color shades, gradients) are in `src/patterns.js`. Reference list in `src/jamil.css`. Rebuild/publish the package after changes.
 
