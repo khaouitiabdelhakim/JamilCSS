@@ -34,6 +34,16 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             <span className="j-font-bold j-text-white">
               Jamil<span className="brand-gradient-text">CSS</span>
             </span>
+            <span
+              className="j-hidden sm:j-inline-flex j-items-center j-px-8 j-py-3 j-rounded-full j-text-xs j-font-semibold j-font-mono j-ml-4"
+              style={{
+                background: "rgba(248,87,166,0.08)",
+                color: "#f857a6",
+                border: "1px solid rgba(248,87,166,0.2)",
+              }}
+            >
+              v0.1.0
+            </span>
           </Link>
 
           <div className="j-flex-1 j-max-w-md">
