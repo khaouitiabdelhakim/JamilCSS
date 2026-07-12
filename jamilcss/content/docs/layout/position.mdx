@@ -1,0 +1,30 @@
+---
+title: Position
+description: Position and inset utilities
+---
+
+Control element positioning with static, relative, absolute, fixed, and sticky utilities.
+
+<PropTable rows={[
+  { utility: "j-relative", css: "position: relative" },
+  { utility: "j-absolute", css: "position: absolute" },
+  { utility: "j-fixed", css: "position: fixed" },
+  { utility: "j-sticky", css: "position: sticky" },
+  { utility: "j-inset-0", css: "top/right/bottom/left: 0" },
+  { utility: "j-top-4", css: "top: 4px" },
+  { utility: "j-right-8", css: "right: 8px" },
+  { utility: "j-z-50", css: "z-index: 50" },
+]} />
+
+<CodeBlock code={`<div className="j-relative j-p-8">
+  <span className="j-absolute j-top-2 j-right-2 j-px-2 j-py-1 j-bg-red-500 j-text-white j-text-xs j-rounded">
+    New
+  </span>
+  <p>Card content</p>
+</div>`} />
+
+## Sticky header
+
+<CodeBlock code={`<header className="j-sticky j-top-0 j-z-50 j-bg-white j-border-b j-p-4">
+  Navigation
+</header>`} />

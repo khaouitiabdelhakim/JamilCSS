@@ -1,0 +1,9 @@
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./content/**/*.{md,mdx}",
+  ],
+  cwd: __dirname,
+  cssEntry: "app/globals.css",
+};

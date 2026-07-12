@@ -1,0 +1,24 @@
+---
+title: Transitions
+description: Transition duration and easing utilities
+---
+
+Animate property changes smoothly with transition utilities.
+
+<PropTable rows={[
+  { utility: "j-transition", css: "transition on common properties, 150ms" },
+  { utility: "j-duration-200", css: "transition-duration: 200ms" },
+  { utility: "j-duration-2-s", css: "transition-duration: 2s" },
+  { utility: "j-ease-linear", css: "transition-timing-function: linear" },
+  { utility: "j-ease-in", css: "transition-timing-function: ease-in" },
+  { utility: "j-ease-out", css: "transition-timing-function: ease-out" },
+  { utility: "j-ease-in-out", css: "transition-timing-function: ease-in-out" },
+]} />
+
+<CodeBlock code={`<button className="j-bg-blue-500 hover:j-bg-blue-700 j-transition j-duration-300 j-ease-in-out j-px-4 j-py-2 j-rounded">
+  Smooth hover
+</button>
+
+<div className="j-opacity-50 hover:j-opacity-100 j-transition j-duration-200">
+  Fade on hover
+</div>`} />

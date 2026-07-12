@@ -1,0 +1,42 @@
+---
+title: Configuration
+description: Configure content paths, cssEntry, and breakpoints in jamil.config.js
+---
+
+JamilCSS loads options from `jamil.config.js` in your project root. You can also pass options directly in the PostCSS config — PostCSS options override the config file.
+
+## jamil.config.js
+
+<CodeBlock code={`module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  cwd: __dirname,
+  cssEntry: "app/globals.css",
+};`} lang="js" />
+
+<PropTable rows={[
+  { utility: "content", css: "Glob patterns for files to scan for j-* classes" },
+  { utility: "cwd", css: "Directory to resolve globs from (usually __dirname)" },
+  { utility: "cssEntry", css: "CSS file with @jamilcss — touched on content change in dev" },
+  { utility: "theme.breakpoints", css: "Override default responsive prefixes" },
+]} />
+
+## Custom breakpoints
+
+<CodeBlock code={`module.exports = {
+  content: ["./app/**/*.{js,ts,jsx,tsx}"],
+  cwd: __dirname,
+  theme: {
+    breakpoints: [
+      { prefix: "sm:", minWidth: "640px" },
+      { prefix: "md:", minWidth: "768px" },
+      { prefix: "lg:", minWidth: "1024px" },
+    ],
+  },
+};`} lang="js" />
+
+## Debug mode
+
+Set `JAMILCSS_DEBUG=1` when running your dev server to log when the plugin runs and which classes are compiled.

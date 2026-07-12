@@ -1,0 +1,29 @@
+---
+title: ARIA Supports
+description: Accessibility-driven variant prefixes
+---
+
+JamilCSS supports ARIA attribute variants for styling based on accessibility state.
+
+<PropTable rows={[
+  { utility: "aria-checked:", css: "[aria-checked=true]" },
+  { utility: "aria-disabled:", css: "[aria-disabled=true]" },
+  { utility: "aria-expanded:", css: "[aria-expanded=true]" },
+  { utility: "aria-selected:", css: "[aria-selected=true]" },
+]} />
+
+<CodeBlock code={`<button
+  aria-pressed="true"
+  className="j-px-4 j-py-2 j-rounded aria-pressed:j-bg-blue-600 aria-pressed:j-text-white"
+>
+  Toggle
+</button>
+
+<div
+  aria-expanded="true"
+  className="aria-expanded:j-rotate-180 j-transition"
+>
+  Chevron
+</div>`} />
+
+Use ARIA variants to style custom components without relying solely on `:checked` or `:disabled` pseudo-classes.

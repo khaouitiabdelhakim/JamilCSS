@@ -1,0 +1,28 @@
+---
+title: The @jamilcss Directive
+description: The entry point for JamilCSS utility generation
+---
+
+The `@jamilcss` at-rule is the injection point where the PostCSS plugin writes all compiled utility CSS.
+
+## Usage
+
+Add a single directive to your global CSS:
+
+<CodeBlock code={`@jamilcss-preflight;
+@jamilcss;`} lang="css" />
+
+The plugin replaces `@jamilcss;` with the generated utility rules at build time. In development, the plugin watches your content files and re-runs when classes change.
+
+<PropTable rows={[
+  { utility: "@jamilcss-preflight;", css: "Injects CSS normalize/reset (optional)" },
+  { utility: "@jamilcss;", css: "Injects all scanned j-* utility rules" },
+]} />
+
+## Without the compiler
+
+If you don't use PostCSS, you can import the full prebuilt stylesheet:
+
+<CodeBlock code={`import "jamilcss/dist/jamil.css";`} />
+
+This includes every utility but produces a larger file. The compiler approach is recommended for production.

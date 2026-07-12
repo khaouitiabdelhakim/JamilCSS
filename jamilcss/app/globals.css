@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@jamilcss-preflight;
+@jamilcss;
+
+/* ===== Base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+body {
+  background: #030712;
+  color: #f1f5f9;
+}
+
+/* ===== Brand gradient ===== */
+.brand-gradient {
+  background: linear-gradient(135deg, #f857a6, #ff5858);
+}
+.brand-gradient-text {
+  background: linear-gradient(135deg, #f857a6, #ff5858);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.brand-gradient-border {
+  border-image: linear-gradient(135deg, #f857a6, #ff5858) 1;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: #f857a6;
+  color: #fff;
+}
+
+/* ===== Scrollbar ===== */
+* { scrollbar-width: thin; scrollbar-color: #1e293b transparent; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+/* ===== Code font ===== */
+code, pre, kbd, samp { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+/* ===== Prose (MDX content) ===== */
+.prose {
+  color: #cbd5e1;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.prose h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #f8fafc;
+  margin-bottom: 0.75rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.prose h2 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #1e293b;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.prose h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.prose p { margin-bottom: 1.25rem; }
+.prose p:last-child { margin-bottom: 0; }
+
+.prose a {
+  color: #f857a6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(248, 87, 166, 0.4);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.prose a:hover {
+  color: #ff5858;
+  text-decoration-color: rgba(255, 88, 88, 0.6);
+}
+
+.prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  background: #0f172a;
+  color: #f857a6;
+  padding: 0.15em 0.45em;
+  border-radius: 5px;
+  border: 1px solid #1e293b;
+}
+
+.prose pre {
+  background: #060b18;
+  color: #e2e8f0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  border: 1px solid #1e293b;
+  line-height: 1.7;
+}
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  border: none;
+}
+
+.prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+.prose ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+.prose li { margin-bottom: 0.35rem; }
+
+.prose blockquote {
+  border-left: 3px solid #f857a6;
+  padding-left: 1rem;
+  color: #94a3b8;
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+
+.prose table { width: 100%; border-collapse: collapse; margin: 0; font-size: 0.9rem; }
+.prose th {
+  background: #0f172a;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid #1e293b;
+  color: #e2e8f0;
+}
+.prose td {
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid #0f172a;
+  color: #cbd5e1;
+}
+
+.prose strong { font-weight: 600; color: #f1f5f9; }
+.prose hr { border: none; border-top: 1px solid #1e293b; margin: 2rem 0; }
+
+/* ===== Hero Animations ===== */
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-40px) scale(1.06); }
+}
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(30px, -20px) scale(1.04) rotate(5deg); }
+  66% { transform: translate(-15px, 15px) scale(0.96) rotate(-3deg); }
+}
+@keyframes orb-pulse {
+  0%, 100% { opacity: 0.18; transform: scale(1); }
+  50% { opacity: 0.32; transform: scale(1.08); }
+}
+@keyframes gradient-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes grid-breathe {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.09; }
+}
+@keyframes shimmer-line {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+@keyframes particle-rise {
+  0% { transform: translateY(0) scale(0); opacity: 0; }
+  5% { opacity: 0.7; transform: translateY(-5px) scale(1); }
+  95% { opacity: 0.3; }
+  100% { transform: translateY(-60vh) scale(0.5); opacity: 0; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes badge-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(248,87,166,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(248,87,166,0.2); }
+}
+@keyframes beam-scan {
+  0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(300%) skewX(-15deg); opacity: 0; }
+}
+
+.hero-orb-1 { animation: orb-float 8s ease-in-out infinite; }
+.hero-orb-2 { animation: orb-drift 11s ease-in-out infinite; }
+.hero-orb-3 { animation: orb-pulse 6s ease-in-out infinite; }
+.hero-grid { animation: grid-breathe 4s ease-in-out infinite; }
+.hero-badge { animation: badge-glow 3s ease-in-out infinite; }
+.hero-fade-1 { animation: fade-up 0.7s ease-out both; animation-delay: 0.1s; }
+.hero-fade-2 { animation: fade-up 0.7s ease-out both; animation-delay: 0.25s; }
+.hero-fade-3 { animation: fade-up 0.7s ease-out both; animation-delay: 0.4s; }
+.hero-fade-4 { animation: fade-up 0.7s ease-out both; animation-delay: 0.55s; }
+.hero-fade-5 { animation: fade-up 0.7s ease-out both; animation-delay: 0.7s; }
+
+/* ===== Shiki code blocks ===== */
+.shiki { background: transparent; margin: 0; padding: 1.25rem 1.5rem; font-size: 0.875rem; line-height: 1.7; overflow-x: auto; }
+.shiki code { background: none; color: inherit; padding: 0; border: none; font-size: inherit; }
+
+/* Reset .prose pre styles when it's a shiki block — prevents double-card */
+.prose .shiki {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  color: inherit;
+}
+
+/* ===== TOC ===== */
+.toc-link { display: block; font-size: 0.8125rem; color: #64748b; padding: 3px 0; transition: color 0.15s; text-decoration: none; line-height: 1.5; }
+.toc-link:hover { color: #cbd5e1; }
+.toc-link.active { color: #f857a6; }
+.toc-link-h3 { padding-left: 0.75rem; }

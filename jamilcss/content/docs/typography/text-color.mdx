@@ -1,0 +1,21 @@
+---
+title: Text Color
+description: Text color utilities with palette shades
+---
+
+Set text colors using named palette colors and shade numbers (50–950).
+
+<PropTable rows={[
+  { utility: "j-text-gray-900", css: "color: #111827" },
+  { utility: "j-text-blue-600", css: "color: #2563eb" },
+  { utility: "j-text-white", css: "color: #fff" },
+  { utility: "j-text-primary", css: "color: primary brand" },
+  { utility: "j-text-blue-500/50", css: "color with 50% opacity" },
+]} />
+
+<CodeBlock code={`<p className="j-text-gray-900 j-dark:j-text-gray-100">
+  Adapts to theme
+</p>
+<a className="j-text-blue-600 hover:j-text-blue-800">Link</a>`} />
+
+22 color families are available: gray, blue, red, green, yellow, orange, pink, purple, indigo, teal, cyan, slate, rose, sky, lime, emerald, violet, fuchsia, amber, zinc, neutral, stone.

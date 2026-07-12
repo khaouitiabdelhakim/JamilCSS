@@ -1,0 +1,29 @@
+---
+title: Font Size
+description: Typography scale and numeric font-size utilities
+---
+
+JamilCSS supports a named typography scale and generic numeric font sizes with optional units.
+
+<PropTable rows={[
+  { utility: "j-text-xs", css: "font-size: 0.75rem" },
+  { utility: "j-text-sm", css: "font-size: 0.875rem" },
+  { utility: "j-text-base", css: "font-size: 1rem" },
+  { utility: "j-text-lg", css: "font-size: 1.125rem" },
+  { utility: "j-text-xl", css: "font-size: 1.25rem" },
+  { utility: "j-text-14", css: "font-size: 14px" },
+  { utility: "j-text-24-rem", css: "font-size: 24rem" },
+  { utility: "j-text-lg-2", css: "font-size: 2 × 1.125rem" },
+]} />
+
+<CodeBlock code={`<h1 className="j-text-4xl j-font-bold">Heading</h1>
+<p className="j-text-base j-text-gray-600">Body text</p>
+<span className="j-text-sm j-text-gray-500">Caption</span>`} />
+
+## Text size units
+
+Default unit is `px`. Optional: `rem`, `pt`, `pc`, `cm`, `mm`, `in`, `Q`.
+
+<CodeBlock code={`<p className="j-text-24">24px</p>
+<p className="j-text-24-rem">24rem</p>
+<p className="j-text-12-pt">12pt</p>`} />

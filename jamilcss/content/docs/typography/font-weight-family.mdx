@@ -1,0 +1,20 @@
+---
+title: Font Weight & Family
+description: Font weight and family utilities
+---
+
+Control font weight and family with utility classes.
+
+<PropTable rows={[
+  { utility: "j-font-thin", css: "font-weight: 100" },
+  { utility: "j-font-normal", css: "font-weight: 400" },
+  { utility: "j-font-medium", css: "font-weight: 500" },
+  { utility: "j-font-semibold", css: "font-weight: 600" },
+  { utility: "j-font-bold", css: "font-weight: 700" },
+  { utility: "j-font-mono", css: "font-family: monospace" },
+  { utility: "j-font-sans", css: "font-family: system-ui, sans-serif" },
+]} />
+
+<CodeBlock code={`<h1 className="j-font-bold j-text-2xl">Bold heading</h1>
+<p className="j-font-normal">Regular body</p>
+<code className="j-font-mono j-text-sm">const x = 1;</code>`} />

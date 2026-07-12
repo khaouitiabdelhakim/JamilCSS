@@ -1,0 +1,18 @@
+---
+title: Stacked Variants
+description: Combine breakpoint, theme, and state in one class
+---
+
+Stack multiple variant prefixes before the utility class to combine conditions.
+
+<PropTable rows={[
+  { utility: "md:dark:hover:j-w-12", css: "At md+, dark theme, on hover" },
+  { utility: "sm:focus:j-bg-blue-500", css: "At sm+, on focus" },
+  { utility: "j-dark:md:j-p-8-rem", css: "Dark theme at md+" },
+]} />
+
+<CodeBlock code={`<button className="j-bg-gray-200 j-dark:j-bg-gray-700 md:hover:j-bg-blue-600 md:dark:hover:j-bg-blue-800 j-px-4 j-py-2 j-rounded j-transition">
+  Stacked variants
+</button>`} />
+
+Variants can be stacked in any order. The plugin generates the correct nested selectors for each combination.

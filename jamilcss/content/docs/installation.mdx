@@ -1,0 +1,48 @@
+---
+title: Installation
+description: Install and configure JamilCSS in a Next.js or other PostCSS project
+---
+
+Install JamilCSS as an npm package and wire it through PostCSS. The plugin scans your content files at build time and injects only the utility CSS you actually use.
+
+## Install
+
+```bash
+npm install jamilcss
+```
+
+## PostCSS config
+
+Create `postcss.config.cjs` in your project root:
+
+<CodeBlock code={`module.exports = {
+  plugins: {
+    jamilcss: {},
+  },
+};`} lang="js" />
+
+## Global CSS
+
+In your global CSS file (e.g. `app/globals.css`):
+
+<CodeBlock code={`@jamilcss-preflight;
+@jamilcss;`} lang="css" />
+
+## Import CSS
+
+Import the global CSS in your root layout or entry:
+
+<CodeBlock code={`import "./globals.css";`} />
+
+## Use utilities
+
+<CodeBlock code={`<div className="j-flex j-items-center j-justify-between j-p-4 j-bg-white j-rounded-lg j-shadow">
+  <h1 className="j-text-xl j-font-bold j-text-gray-900">Title</h1>
+  <button className="j-px-4 j-py-2 j-bg-blue-600 j-text-white j-rounded">Click</button>
+</div>`} />
+
+<PropTable rows={[
+  { utility: "j-flex", css: "display: flex" },
+  { utility: "j-p-4", css: "padding: 4px" },
+  { utility: "j-bg-blue-600", css: "background-color: #2563eb" },
+]} />

@@ -1,0 +1,23 @@
+---
+title: Keyframe Animations
+description: Built-in animation utilities with custom duration
+---
+
+JamilCSS includes built-in keyframe animations. Duration is in milliseconds by default, or seconds with the `-s` suffix.
+
+<PropTable rows={[
+  { utility: "j-animate-fadein-300", css: "fadein over 300ms" },
+  { utility: "j-animate-fadeout-500", css: "fadeout over 500ms" },
+  { utility: "j-animate-spin-2-s", css: "spin over 2 seconds" },
+  { utility: "j-animate-pulse-1-s", css: "pulse over 1 second" },
+  { utility: "j-animate-bounce-800", css: "bounce over 800ms" },
+  { utility: "j-animate-ping-1000", css: "ping over 1000ms" },
+]} />
+
+Built-in keyframe names: **fadein**, **fadeout**, **spin**, **pulse**, **bounce**, **ping**.
+
+<CodeBlock code={`<div className="j-animate-fadein-300">Fades in</div>
+<div className="j-w-8 j-h-8 j-border-2 j-border-blue-500 j-rounded-full j-animate-spin-1-s" />
+<div className="j-w-4 j-h-4 j-bg-blue-500 j-rounded-full j-animate-bounce-800" />`} />
+
+Combine with `motion-reduce:j-animate-none` to respect user motion preferences.

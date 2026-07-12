@@ -1,0 +1,22 @@
+---
+title: Peer & Group
+description: Style siblings and children based on parent/sibling state
+---
+
+Use `j-group` on a parent and `group-hover:` (or other group variants) on children. Use `j-peer` on a sibling and `peer-*` variants on following siblings.
+
+<PropTable rows={[
+  { utility: "j-group", css: "Marks parent for group-* variants" },
+  { utility: "group-hover:j-opacity-100", css: "Child style when group is hovered" },
+  { utility: "j-peer", css: "Marks sibling for peer-* variants" },
+  { utility: "peer-focus:j-border-blue-500", css: "Style when peer is focused" },
+]} />
+
+<CodeBlock code={`{/* Group: style child when parent is hovered */}
+<div className="j-group j-p-4 j-border j-rounded-lg hover:j-border-blue-500">
+  <p className="group-hover:j-text-blue-600">Hover the card</p>
+</div>
+
+{/* Peer: style label when input is focused */}
+<input className="j-peer j-border j-rounded j-px-3 j-py-2" />
+<label className="peer-focus:j-text-blue-600">Email</label>`} />

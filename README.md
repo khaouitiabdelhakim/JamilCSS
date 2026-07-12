@@ -240,6 +240,16 @@ Defined in `src/patterns.js`; add more patterns there if you need them.
 
 New utilities are defined in `src/utilities.js`; patterns (typography scale, color shades, gradients) are in `src/patterns.js`. Reference list in `src/jamil.css`. Rebuild/publish the package after changes.
 
+## JamilCSS website (landing + docs)
+
+```bash
+cd jamilcss
+npm install
+npm run dev
+```
+
+Open http://localhost:3000 for the landing page and http://localhost:3000/docs for documentation.
+
 ## Run the Next.js example (JamilCSS)
 
 ```bash

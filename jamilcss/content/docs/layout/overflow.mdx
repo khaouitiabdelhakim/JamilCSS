@@ -1,0 +1,29 @@
+---
+title: Overflow
+description: Overflow and scroll behavior utilities
+---
+
+Control how content overflows its container.
+
+<PropTable rows={[
+  { utility: "j-overflow-auto", css: "overflow: auto" },
+  { utility: "j-overflow-hidden", css: "overflow: hidden" },
+  { utility: "j-overflow-scroll", css: "overflow: scroll" },
+  { utility: "j-overflow-x-auto", css: "overflow-x: auto" },
+  { utility: "j-overflow-y-auto", css: "overflow-y: auto" },
+  { utility: "j-truncate", css: "overflow hidden + text ellipsis" },
+]} />
+
+<CodeBlock code={`<div className="j-overflow-hidden j-rounded-28">
+  <button className="j-bg-gradient-90-blue-purple j-px-6 j-py-3">
+    Gradient clipped to rounded corners
+  </button>
+</div>
+
+<p className="j-truncate j-max-w-xs">
+  This long text will be truncated with an ellipsis
+</p>`} />
+
+<Callout type="tip">
+Add `j-overflow-hidden` to elements with gradient backgrounds and rounded corners so the gradient clips correctly.
+</Callout>

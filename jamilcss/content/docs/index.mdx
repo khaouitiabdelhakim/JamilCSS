@@ -1,0 +1,32 @@
+---
+title: Introduction
+description: Get started with JamilCSS — utility-first CSS with a PostCSS compiler
+---
+
+JamilCSS is a utility-first CSS framework that works like Tailwind: add `@jamilcss` to your CSS, configure a PostCSS plugin to scan your components, and only the `j-*` classes you use are compiled into the final stylesheet.
+
+<Callout type="tip">
+JamilCSS uses the `j-` prefix for all utilities (e.g. `j-flex`, `j-p-4`, `j-bg-blue-500`).
+</Callout>
+
+## Quick start
+
+1. Install JamilCSS and configure PostCSS
+2. Add `@jamilcss-preflight;` and `@jamilcss;` to your global CSS
+3. Use `j-*` classes in your JSX
+
+<CodeBlock code={`import "./globals.css";
+
+export default function App() {
+  return (
+    <div className="j-flex j-items-center j-gap-4 j-p-6 j-bg-white j-rounded-lg">
+      <h1 className="j-text-xl j-font-bold j-text-gray-900">Hello JamilCSS</h1>
+    </div>
+  );
+}`} />
+
+## What's next
+
+- [Installation](/docs/installation) — set up JamilCSS in your project
+- [Configuration](/docs/configuration) — content paths, breakpoints, and more
+- [How it works](/docs/core-concepts/how-it-works) — the compile pipeline

@@ -1,0 +1,27 @@
+---
+title: The @apply Directive
+description: Inline JamilCSS utilities inside custom CSS rules
+---
+
+The `@apply` directive lets you compose JamilCSS utilities inside your own CSS rules, similar to Tailwind's `@apply`.
+
+## Syntax
+
+<CodeBlock code={`.card {
+  @apply j-flex j-items-center j-p-4 j-bg-white j-rounded-lg j-shadow;
+}
+
+.btn-primary {
+  @apply j-px-4 j-py-2 j-bg-blue-600 j-text-white j-rounded hover:j-bg-blue-700;
+}`} lang="css" />
+
+The plugin resolves each utility to its CSS declarations and inlines them into the rule.
+
+<PropTable rows={[
+  { utility: "@apply j-flex j-p-4", css: "Inlines display:flex and padding:4px" },
+  { utility: "@apply j-bg-blue-600", css: "Inlines background-color from palette" },
+]} />
+
+<Callout type="warning">
+Use `@apply` sparingly. Prefer `j-*` classes directly in JSX for the best tree-shaking and scan accuracy.
+</Callout>

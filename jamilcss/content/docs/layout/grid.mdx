@@ -1,0 +1,24 @@
+---
+title: Grid
+description: CSS Grid utilities in JamilCSS
+---
+
+Use grid utilities to create two-dimensional layouts with rows and columns.
+
+<PropTable rows={[
+  { utility: "j-grid", css: "display: grid" },
+  { utility: "j-inline-grid", css: "display: inline-grid" },
+  { utility: "j-grid-cols-3", css: "grid-template-columns: repeat(3, minmax(0, 1fr))" },
+  { utility: "j-grid-rows-2", css: "grid-template-rows: repeat(2, minmax(0, 1fr))" },
+  { utility: "j-col-span-2", css: "grid-column: span 2 / span 2" },
+  { utility: "j-row-span-2", css: "grid-row: span 2 / span 2" },
+  { utility: "j-gap-8", css: "gap: 8px" },
+]} />
+
+<CodeBlock code={`<div className="j-grid j-grid-cols-3 j-gap-6">
+  <div className="j-col-span-2 j-p-4 j-bg-blue-100 j-rounded-lg">Wide</div>
+  <div className="j-p-4 j-bg-gray-100 j-rounded-lg">Side</div>
+  <div className="j-p-4 j-bg-gray-100 j-rounded-lg">Cell</div>
+  <div className="j-p-4 j-bg-gray-100 j-rounded-lg">Cell</div>
+  <div className="j-p-4 j-bg-gray-100 j-rounded-lg">Cell</div>
+</div>`} />

@@ -1,0 +1,28 @@
+---
+title: State Variants
+description: Hover, focus, active, and other state prefixes
+---
+
+Apply utilities on interaction states using variant prefixes.
+
+<PropTable rows={[
+  { utility: "hover:", css: ":hover" },
+  { utility: "focus:", css: ":focus" },
+  { utility: "focus-visible:", css: ":focus-visible" },
+  { utility: "active:", css: ":active" },
+  { utility: "disabled:", css: ":disabled" },
+  { utility: "first:", css: ":first-child" },
+  { utility: "last:", css: ":last-child" },
+  { utility: "odd:", css: ":nth-child(odd)" },
+  { utility: "even:", css: ":nth-child(even)" },
+  { utility: "group-hover:", css: "When parent with j-group is hovered" },
+  { utility: "motion-reduce:", css: "@media (prefers-reduced-motion: reduce)" },
+]} />
+
+<CodeBlock code={`<button className="j-bg-blue-500 hover:j-bg-blue-600 focus:j-opacity-90 active:j-scale-95 j-transition">
+  Interactive button
+</button>
+
+<div className="j-group">
+  <span className="group-hover:j-opacity-100 j-opacity-50">Hover parent</span>
+</div>`} />

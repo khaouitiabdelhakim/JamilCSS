@@ -1,0 +1,20 @@
+---
+title: Opacity
+description: Opacity utilities for elements and colors
+---
+
+Control element opacity and color opacity independently.
+
+<PropTable rows={[
+  { utility: "j-opacity-0", css: "opacity: 0" },
+  { utility: "j-opacity-50", css: "opacity: 0.5" },
+  { utility: "j-opacity-100", css: "opacity: 1" },
+  { utility: "j-bg-blue-500/50", css: "background-color at 50% opacity" },
+  { utility: "j-text-gray-900/75", css: "text color at 75% opacity" },
+]} />
+
+<CodeBlock code={`<div className="j-opacity-50">Half transparent element</div>
+<div className="j-bg-blue-500/20 j-p-4 j-rounded-lg">Subtle blue tint</div>
+<button className="hover:j-opacity-90 j-transition">Hover fade</button>`} />
+
+Opacity values 0–100 map to 0–1. Values 0–1000 are also supported (e.g. `j-opacity-500` = 0.5).

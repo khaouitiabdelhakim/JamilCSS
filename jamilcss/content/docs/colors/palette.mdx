@@ -1,0 +1,24 @@
+---
+title: Color Palette
+description: 22 color families with shades 50–950
+---
+
+JamilCSS includes 22 color families, each with shades from 50 (lightest) to 950 (darkest). Shade numbers map to Tailwind-like hex values.
+
+## Families
+
+gray, blue, red, green, yellow, orange, pink, purple, indigo, teal, cyan, slate, rose, sky, lime, emerald, violet, fuchsia, amber, zinc, neutral, stone
+
+<PropTable rows={[
+  { utility: "j-text-blue", css: "color: blue-500 (default shade)" },
+  { utility: "j-text-blue-700", css: "color: #1d4ed8" },
+  { utility: "j-bg-pink-100", css: "background-color: #fce7f3" },
+  { utility: "j-border-gray-300", css: "border-color: #d1d5db" },
+]} />
+
+<CodeBlock code={`<div className="j-bg-blue-50 j-dark:j-bg-blue-950 j-p-6 j-rounded-lg">
+  <h3 className="j-text-blue-900 j-dark:j-text-blue-100 j-font-semibold">Info</h3>
+  <p className="j-text-blue-700 j-dark:j-text-blue-300">Palette-aware card</p>
+</div>`} />
+
+Shade numbers 0–1000 are accepted and map to the nearest palette shade (50–950).

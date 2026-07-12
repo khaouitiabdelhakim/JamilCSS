@@ -1,0 +1,26 @@
+---
+title: Gradients
+description: Linear gradient background utilities
+---
+
+Create linear gradients with degree and color stops using a single utility class.
+
+## Syntax
+
+`j-bg-gradient-{degree}-{colors}` or `j-gradient-{degree}-{colors}`
+
+<PropTable rows={[
+  { utility: "j-bg-gradient-90-blue-black", css: "linear-gradient(90deg, blue, black)" },
+  { utility: "j-bg-gradient-180-blue-purple", css: "linear-gradient(180deg, blue, purple)" },
+  { utility: "j-bg-gradient-45-[#fff]-[#000]", css: "gradient with hex colors" },
+]} />
+
+<CodeBlock code={`<button className="j-px-6 j-py-3 j-bg-gradient-90-blue-600-purple-600 j-text-white j-rounded-28 j-overflow-hidden">
+  Gradient button
+</button>
+
+<div className="j-h-32 j-bg-gradient-180-[#667eea]-[#764ba2] j-rounded-xl" />`} />
+
+<Callout type="tip">
+Combine with `j-overflow-hidden` and `j-rounded-*` to clip gradients to rounded corners.
+</Callout>

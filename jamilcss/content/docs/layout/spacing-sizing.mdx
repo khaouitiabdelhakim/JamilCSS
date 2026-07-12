@@ -1,0 +1,28 @@
+---
+title: Spacing & Sizing
+description: Padding, margin, width, and height utilities
+---
+
+JamilCSS uses generic numeric patterns — any number works and compiles to pixels by default. Add a unit suffix for rem, vh, %, and more.
+
+<PropTable rows={[
+  { utility: "j-p-12", css: "padding: 12px" },
+  { utility: "j-px-8", css: "padding-left/right: 8px" },
+  { utility: "j-m-4", css: "margin: 4px" },
+  { utility: "j-w-200", css: "width: 200px" },
+  { utility: "j-w-200-rem", css: "width: 200rem" },
+  { utility: "j-h-full", css: "height: 100%" },
+  { utility: "j-min-h-screen", css: "min-height: 100vh" },
+  { utility: "j-max-w-md", css: "max-width: 28rem" },
+  { utility: "j-gap-24", css: "gap: 24px" },
+]} />
+
+<CodeBlock code={`<div className="j-p-8 j-m-4 j-w-full j-max-w-md j-mx-auto">
+  <div className="j-px-4 j-py-2 j-mb-4">Padded content</div>
+</div>`} />
+
+## Units
+
+Supported unit suffixes: `px`, `rem`, `em`, `%`, `vh`, `vw`, `vmin`, `vmax`, `cm`, `mm`, `in`, `pt`, `pc`, `Q`.
+
+<CodeBlock code={`<div className="j-w-12-rem j-p-8-vh j-h-50">Custom units</div>`} />

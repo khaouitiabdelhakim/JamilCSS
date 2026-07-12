@@ -1,0 +1,27 @@
+---
+title: Preflight
+description: JamilCSS normalize/reset via @jamilcss-preflight
+---
+
+JamilCSS includes a modern CSS reset called Preflight. It normalizes cross-browser defaults so your utility classes behave predictably.
+
+## Usage
+
+<CodeBlock code={`@jamilcss-preflight;
+@jamilcss;`} lang="css" />
+
+Preflight is optional but recommended. It sets `box-sizing: border-box`, resets margins on typography elements, normalizes form controls, and more.
+
+## What it does
+
+<PropTable rows={[
+  { utility: "box-sizing", css: "border-box on all elements" },
+  { utility: "body margin", css: "margin: 0" },
+  { utility: "headings", css: "font-size and font-weight inherit from parent" },
+  { utility: "lists", css: "list-style: none, padding/margin reset" },
+  { utility: "buttons", css: "background transparent, cursor pointer" },
+]} />
+
+<Callout type="tip">
+Preflight runs before `@jamilcss` so your utility classes can override reset styles normally.
+</Callout>

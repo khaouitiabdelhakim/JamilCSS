@@ -1,0 +1,19 @@
+---
+title: Background
+description: Background color utilities
+---
+
+Set background colors using the same palette as text colors.
+
+<PropTable rows={[
+  { utility: "j-bg-white", css: "background-color: #fff" },
+  { utility: "j-bg-gray-100", css: "background-color: #f3f4f6" },
+  { utility: "j-bg-blue-600", css: "background-color: #2563eb" },
+  { utility: "j-bg-blue-500/50", css: "background with 50% opacity" },
+]} />
+
+<CodeBlock code={`<div className="j-bg-white j-dark:j-bg-gray-900 j-p-6 j-rounded-xl">
+  <button className="j-bg-blue-600 hover:j-bg-blue-700 j-text-white j-px-4 j-py-2 j-rounded">
+    Primary
+  </button>
+</div>`} />

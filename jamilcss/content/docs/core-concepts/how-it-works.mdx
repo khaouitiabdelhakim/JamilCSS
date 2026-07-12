@@ -1,0 +1,38 @@
+---
+title: How It Works
+description: The JamilCSS compile pipeline — scan, match, inject
+---
+
+JamilCSS follows the same mechanism as Tailwind CSS: a PostCSS plugin scans your source files for `j-*` class names and generates only the CSS you need.
+
+## Pipeline
+
+1. **Scan** — The plugin reads all files matching your `content` globs
+2. **Extract** — A regex finds all `j-*` class names (including stacked variants like `md:dark:hover:j-bg-blue-500`)
+3. **Resolve** — Each class is matched against static utilities (`utilities.js`) or generic patterns (`patterns.js`)
+4. **Inject** — Generated CSS replaces the `@jamilcss` directive in your stylesheet
+
+<Callout type="info">
+Only classes that appear in your content files are included in the output. Unused utilities are never emitted.
+</Callout>
+
+<CodeBlock code={`/* globals.css */
+@jamilcss-preflight;
+@jamilcss;
+
+/* Your component */
+<div className="j-flex j-p-4 j-bg-white" />
+
+/* Compiled output includes only:
+   .j-flex { display: flex }
+   .j-p-4 { padding: 4px }
+   .j-bg-white { background-color: #fff }
+*/`} lang="css" />
+
+## Static vs pattern utilities
+
+| Type | Source | Example |
+|------|--------|---------|
+| Static | `utilities.js` | `j-flex`, `j-hidden`, `j-font-bold` |
+| Pattern | `patterns.js` | `j-p-12`, `j-w-200-rem`, `j-bg-blue-500` |
+| Keyframes | `keyframes.js` | `j-animate-fadein-300` |

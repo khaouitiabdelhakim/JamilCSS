@@ -1,0 +1,19 @@
+---
+title: Border Color
+description: Border color utilities
+---
+
+Set border colors on elements that have a border width applied.
+
+<PropTable rows={[
+  { utility: "j-border", css: "border-width: 1px" },
+  { utility: "j-border-2", css: "border-width: 2px" },
+  { utility: "j-border-gray-200", css: "border-color: #e5e7eb" },
+  { utility: "j-border-blue-500", css: "border-color: #3b82f8" },
+  { utility: "j-border-pink-400/50", css: "border with 50% opacity" },
+]} />
+
+<CodeBlock code={`<input
+  className="j-border j-border-gray-300 focus:j-border-blue-500 j-rounded-lg j-px-3 j-py-2 j-w-full"
+  placeholder="Email"
+/>`} />

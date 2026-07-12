@@ -1,0 +1,23 @@
+---
+title: Dark & Light Theme
+description: Theme variants with j-dark and j-light prefixes
+---
+
+Apply styles conditionally when an ancestor has class `dark` or `light` — typically on `<html>`.
+
+<PropTable rows={[
+  { utility: "j-dark:", css: "Applies when ancestor has .dark" },
+  { utility: "j-light:", css: "Applies when ancestor has .light" },
+]} />
+
+<CodeBlock code={`<html className="dark">
+  <body className="j-bg-white j-dark:j-bg-gray-900 j-text-gray-900 j-dark:j-text-gray-100">
+    Theme-aware content
+  </body>
+</html>`} />
+
+Toggle the `dark` class on `<html>` based on user preference or `prefers-color-scheme`. This site uses a theme toggle that persists to `localStorage`.
+
+<Callout type="info">
+The `j-dark:` prefix requires an ancestor with `class="dark"`. It does not use `@media (prefers-color-scheme)` directly.
+</Callout>

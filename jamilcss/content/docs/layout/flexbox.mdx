@@ -1,0 +1,33 @@
+---
+title: Flexbox
+description: Flex layout utilities in JamilCSS
+---
+
+JamilCSS provides a complete set of flexbox utilities for building responsive layouts.
+
+<PropTable rows={[
+  { utility: "j-flex", css: "display: flex" },
+  { utility: "j-inline-flex", css: "display: inline-flex" },
+  { utility: "j-flex-row", css: "flex-direction: row" },
+  { utility: "j-flex-col", css: "flex-direction: column" },
+  { utility: "j-flex-wrap", css: "flex-wrap: wrap" },
+  { utility: "j-items-center", css: "align-items: center" },
+  { utility: "j-justify-between", css: "justify-content: space-between" },
+  { utility: "j-gap-4", css: "gap: 4px" },
+  { utility: "j-flex-1", css: "flex: 1 1 0%" },
+]} />
+
+<CodeBlock code={`<div className="j-flex j-items-center j-justify-between j-gap-4 j-p-4">
+  <span className="j-font-bold">Logo</span>
+  <nav className="j-flex j-gap-6">
+    <a className="hover:j-text-blue-600">Home</a>
+    <a className="hover:j-text-blue-600">About</a>
+  </nav>
+</div>`} />
+
+## Responsive flex
+
+<CodeBlock code={`<div className="j-flex-col md:j-flex-row j-gap-4">
+  <div className="j-flex-1">Column 1</div>
+  <div className="j-flex-1">Column 2</div>
+</div>`} />

@@ -1,0 +1,26 @@
+---
+title: Text Modifiers
+description: Alignment, decoration, and text overflow utilities
+---
+
+Fine-tune text appearance with alignment, spacing, and overflow utilities.
+
+<PropTable rows={[
+  { utility: "j-text-center", css: "text-align: center" },
+  { utility: "j-text-left", css: "text-align: left" },
+  { utility: "j-text-right", css: "text-align: right" },
+  { utility: "j-uppercase", css: "text-transform: uppercase" },
+  { utility: "j-lowercase", css: "text-transform: lowercase" },
+  { utility: "j-capitalize", css: "text-transform: capitalize" },
+  { utility: "j-underline", css: "text-decoration: underline" },
+  { utility: "j-line-through", css: "text-decoration: line-through" },
+  { utility: "j-leading-6", css: "line-height: 1.5rem" },
+  { utility: "j-tracking-wide", css: "letter-spacing: 0.025em" },
+  { utility: "j-whitespace-nowrap", css: "white-space: nowrap" },
+  { utility: "j-break-words", css: "overflow-wrap: break-word" },
+]} />
+
+<CodeBlock code={`<p className="j-text-center j-uppercase j-tracking-wide j-text-sm">
+  Centered uppercase label
+</p>
+<p className="j-truncate j-max-w-xs">Long text truncated...</p>`} />

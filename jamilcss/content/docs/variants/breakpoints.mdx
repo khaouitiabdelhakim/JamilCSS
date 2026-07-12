@@ -1,0 +1,24 @@
+---
+title: Breakpoints
+description: Responsive utilities with sm, md, lg, xl, 2xl prefixes
+---
+
+Apply utilities only at specific minimum viewport widths using breakpoint prefixes.
+
+<PropTable rows={[
+  { utility: "sm:", css: "min-width: 640px" },
+  { utility: "md:", css: "min-width: 768px" },
+  { utility: "lg:", css: "min-width: 1024px" },
+  { utility: "xl:", css: "min-width: 1280px" },
+  { utility: "2xl:", css: "min-width: 1536px" },
+]} />
+
+<CodeBlock code={`<div className="j-p-4 md:j-p-8 lg:j-flex lg:j-items-center">
+  Padding increases at md; flex layout at lg
+</div>
+
+<div className="j-grid j-grid-cols-1 md:j-grid-cols-2 lg:j-grid-cols-3 j-gap-6">
+  Responsive grid
+</div>`} />
+
+Override defaults in `jamil.config.js` with `theme.breakpoints`.
