@@ -1,12 +1,17 @@
 # JamilCSS
 
+[![npm version](https://img.shields.io/npm/v/jamilcss?color=f857a6&labelColor=0f172a&style=flat-square)](https://www.npmjs.com/package/jamilcss)
+[![npm downloads](https://img.shields.io/npm/dw/jamilcss?color=ff5858&labelColor=0f172a&style=flat-square)](https://www.npmjs.com/package/jamilcss)
+[![License: MIT](https://img.shields.io/badge/license-MIT-f857a6?labelColor=0f172a&style=flat-square)](./LICENSE.md)
+[![Buy Me a Coffee](https://img.shields.io/badge/support-Buy%20Me%20a%20Coffee-f857a6?labelColor=0f172a&style=flat-square&logo=buy-me-a-coffee)](https://buymeacoffee.com/kh.abdelhakim)
+
 Utility-first CSS with the **same mechanism as Tailwind**: use a single directive in your CSS and a PostCSS plugin scans your `.tsx` / `.jsx` (and HTML) and compiles only the `j-*` utility classes you actually use.
 
 **Endless, unstoppable:** one class can do a lot. Use **generic** patterns so you don’t define every value: `j-w-12` (px), `j-w-12-rem`, `j-dark:sm:j-w-12-cm`, `j-animate-fadein-300` (ms), `j-animate-fadein-2-s` (seconds). Stack variants and units to get exactly what you need in one command.
 
-**Open source · Open to collaboration**
+**Open source · Open to collaboration · Made with love**
 
-Provided by **[KHAOUITI Apps](https://www.khaouitiapps.com)**  
+Provided by **[KHAOUITI Apps](https://www.khaouitiapps.com)**
 [![Powered by KHAOUITI Apps](https://www.khaouitiapps.com/images/powered_by_khaouitiapps_white.png)](https://www.khaouitiapps.com)
 
 ## How it works (Tailwind-like)
@@ -285,8 +290,24 @@ All `j-*` utilities are included; no content scanning. Prefer the compiler setup
 
 ## Open source & collaboration
 
-JamilCSS is **open source** and **open to collaboration**. Contributions, issues, and ideas are welcome.
+JamilCSS is **open source** and **open to collaboration**. Contributions, issues, and ideas are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
-**Provided by [KHAOUITI Apps](https://www.khaouitiapps.com)**
+---
+
+## License
+
+MIT — see [LICENSE.md](./LICENSE.md) for full text.
+
+---
+
+## Support
+
+If JamilCSS saves you time, consider buying me a coffee:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-f857a6?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://buymeacoffee.com/kh.abdelhakim)
+
+---
+
+**Made with love by [KHAOUITI Apps](https://www.khaouitiapps.com)**
 
 [![Powered by KHAOUITI Apps](https://www.khaouitiapps.com/images/powered_by_khaouitiapps_black.png)](https://www.khaouitiapps.com)
