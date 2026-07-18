@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd jamilcss && npm install && npm run build",
+  "outputDirectory": "jamilcss/.next",
+  "installCommand": "npm install",
+  "framework": "nextjs"
+}
