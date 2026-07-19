@@ -1,6 +1,6 @@
 {
   "name": "jamilcss",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Utility-first CSS (Tailwind-like) with PostCSS compiler",
   "main": "src/plugin.js",
   "scripts": {
