@@ -180,14 +180,14 @@ export function Playground() {
   }, [activeTab]);
 
   return (
-    <section className="j-py-96 j-px-24">
+    <section className="j-py-56 lg:j-py-96 j-px-20">
       <div className="j-container">
-        <div className="reveal j-text-center j-mb-64" ref={revealRef}>
+        <div className="reveal j-text-center j-mb-48 lg:j-mb-64" ref={revealRef}>
           <p className="j-text-sm j-font-semibold j-uppercase j-tracking-widest j-mb-12" style={{ color: "#f857a6" }}>Interactive Demo</p>
-          <h2 className="j-text-5xl j-font-bold j-text-white j-mb-16" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em" }}>
+          <h2 className="j-font-bold j-text-white j-mb-16" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em", fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
             See it work. Click anything.
           </h2>
-          <p className="j-text-xl j-text-gray-400">Every component styled with real JamilCSS utility classes.</p>
+          <p className="j-text-lg j-text-gray-400">Every component styled with real JamilCSS utility classes.</p>
         </div>
 
         <div

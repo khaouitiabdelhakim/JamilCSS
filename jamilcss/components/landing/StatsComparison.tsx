@@ -100,18 +100,19 @@ export function StatsComparison() {
   };
 
   return (
-    <section className="j-py-96 j-px-24 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
+    <section className="j-py-56 lg:j-py-96 j-px-20 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
       <div className="j-container">
         {/* Stat counters */}
-        <div className="reveal j-grid j-grid-cols-3 j-gap-24 j-mb-80 j-text-center" ref={revealRef}>
+        <div className="reveal j-grid j-grid-cols-3 j-gap-12 md:j-gap-24 j-mb-48 lg:j-mb-80 j-text-center" ref={revealRef}>
           {STATS.map((s) => (
             <div
               key={s.label}
-              className="j-p-28 j-rounded-2xl j-border"
+              className="j-p-16 md:j-p-28 j-rounded-2xl j-border"
               style={{ background: "rgba(248,87,166,0.04)", borderColor: "rgba(248,87,166,0.12)" }}
             >
               <div
-                className="j-text-6xl j-font-bold j-mb-8"
+                className="j-font-bold j-mb-8"
+                style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.04em", fontSize: "clamp(1.8rem, 5vw, 3.5rem)", background: "linear-gradient(135deg, #f857a6, #ff5858)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
                 style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.04em", background: "linear-gradient(135deg, #f857a6, #ff5858)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
               >
                 <CountUp target={s.value} suffix={s.suffix} />
@@ -123,7 +124,7 @@ export function StatsComparison() {
 
         {/* Heading */}
         <div className="j-text-center j-mb-48">
-          <h2 className="j-text-4xl j-font-bold j-text-white j-mb-12" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em" }}>
+          <h2 className="j-font-bold j-text-white j-mb-12" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em", fontSize: "clamp(1.6rem, 4vw, 2.5rem)" }}>
             Less to write. More to show.
           </h2>
           <p className="j-text-gray-400 j-text-lg">Same result. Drastically less code.</p>
@@ -150,7 +151,7 @@ export function StatsComparison() {
           </div>
 
           {/* JamilCSS */}
-          <div className="j-relative j-border-l" style={{ borderColor: "rgba(248,87,166,0.15)" }}>
+          <div className="j-relative lg:j-border-l j-border-t lg:j-border-t-0" style={{ borderColor: "rgba(248,87,166,0.15)" }}>
             {/* vs badge */}
             <div
               className="j-absolute j-hidden lg:j-flex j-items-center j-justify-center j-z-10"

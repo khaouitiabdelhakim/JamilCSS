@@ -99,17 +99,17 @@ export async function Community() {
   ];
 
   return (
-    <section className="j-py-96 j-px-24 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
+    <section className="j-py-56 lg:j-py-96 j-px-20 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
       <div className="j-container">
-        <div className="j-text-center j-mb-64">
+        <div className="j-text-center j-mb-48 lg:j-mb-64">
           <p className="j-text-sm j-font-semibold j-uppercase j-tracking-widest j-mb-12" style={{ color: "#f857a6" }}>Community</p>
           <h2
-            className="j-text-5xl j-font-bold j-text-white j-mb-16"
-            style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em" }}
+            className="j-font-bold j-text-white j-mb-16"
+            style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em", fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Built in the open.
           </h2>
-          <p className="j-text-gray-400 j-text-xl">Open source, open to collaboration.</p>
+          <p className="j-text-gray-400 j-text-lg">Open source, open to collaboration.</p>
         </div>
 
         {/* Stats grid */}
@@ -168,7 +168,7 @@ export async function Community() {
         )}
 
         {/* Ideas */}
-        <div className="j-grid lg:j-grid-cols-3 j-gap-24 j-mb-48">
+        <div className="j-grid sm:j-grid-cols-2 lg:j-grid-cols-3 j-gap-16 md:j-gap-24 j-mb-48">
           {IDEAS.map((idea, i) => (
             <div
               key={i}

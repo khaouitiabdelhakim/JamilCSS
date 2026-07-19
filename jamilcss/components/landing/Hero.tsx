@@ -55,7 +55,7 @@ export function Hero() {
   };
 
   return (
-    <section className="j-relative j-min-h-screen j-flex j-items-center j-pt-64 j-pb-80 j-px-24 j-overflow-hidden">
+    <section className="j-relative j-flex j-items-center j-pt-80 j-pb-64 j-px-20 j-overflow-hidden" style={{ minHeight: "100svh" }}>
       {/* Dot grid */}
       <div
         className="j-absolute j-inset-0 j-pointer-events-none hero-grid"
@@ -78,10 +78,10 @@ export function Hero() {
         style={{ zIndex: 0, bottom: "10%", right: "8%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,88,88,0.14) 0%, transparent 70%)", filter: "blur(60px)" }}
       />
 
-      <div className="j-container j-relative j-flex lg:j-flex-row j-flex-col j-items-center j-gap-80" style={{ zIndex: 1 }}>
+      <div className="j-container j-relative j-flex lg:j-flex-row j-flex-col j-items-center j-gap-48 lg:j-gap-72" style={{ zIndex: 1 }}>
 
         {/* ── Left column ── */}
-        <div className="j-flex j-flex-col j-items-center lg:j-items-start j-text-center lg:j-text-left j-flex-1" style={{ maxWidth: 560 }}>
+        <div className="j-flex j-flex-col j-items-center lg:j-items-start j-text-center lg:j-text-left j-flex-1 j-w-full"  style={{ maxWidth: 560 }}>
 
           {/* Headline */}
           <h1
@@ -176,7 +176,7 @@ export function Hero() {
         </div>
 
         {/* ── Right column: code → renders → preview ── */}
-        <div className="hero-fade-5 j-w-full j-flex j-flex-col" style={{ maxWidth: 420 }}>
+        <div className="hero-fade-5 j-w-full j-flex j-flex-col" style={{ maxWidth: 420, minWidth: 0 }}>
 
           {/* Code window */}
           <div

@@ -77,22 +77,22 @@ export function FeatureCards() {
   const ref = useReveal();
 
   return (
-    <section className="j-py-96 j-px-24 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
+    <section className="j-py-56 lg:j-py-96 j-px-20 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
       <div className="j-container">
-        <div className="reveal j-text-center j-mb-64" ref={ref}>
+        <div className="reveal j-text-center j-mb-48 lg:j-mb-64" ref={ref}>
           <p className="j-text-sm j-font-semibold j-uppercase j-tracking-widest j-mb-12" style={{ color: "#f857a6" }}>Why JamilCSS</p>
           <h2
-            className="j-text-5xl j-font-bold j-text-white j-mb-16 j-tracking-tight"
-            style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em" }}
+            className="j-font-bold j-text-white j-mb-16 j-tracking-tight"
+            style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em", fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Everything you need.<br />Nothing you don&apos;t.
           </h2>
-          <p className="j-text-xl j-text-gray-400 j-max-w-2xl j-mx-auto">
+          <p className="j-text-lg j-text-gray-400 j-max-w-2xl j-mx-auto">
             Built for developers who want full control without the complexity.
           </p>
         </div>
 
-        <div className="j-grid md:j-grid-cols-2 lg:j-grid-cols-3 j-gap-24">
+        <div className="j-grid sm:j-grid-cols-2 lg:j-grid-cols-3 j-gap-16 md:j-gap-24">
           {FEATURES.map((f, i) => (
             <div
               key={f.title}

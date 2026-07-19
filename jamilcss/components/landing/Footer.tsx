@@ -18,8 +18,8 @@ const EXTERNAL_LINKS = [
 export function Footer() {
   return (
     <footer className="j-border-t" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
-      <div className="j-container j-py-72 j-px-24">
-        <div className="j-grid md:j-grid-cols-3 j-gap-48 j-mb-64">
+      <div className="j-container j-py-48 lg:j-py-72 j-px-20">
+        <div className="j-grid md:j-grid-cols-3 j-gap-40 lg:j-gap-48 j-mb-48 lg:j-mb-64">
           {/* Col 1: Brand */}
           <div>
             <Link href="/" className="j-flex j-items-center j-gap-10 j-text-xl j-font-bold j-text-white j-mb-16 j-transition hover:j-opacity-80">
@@ -62,12 +62,12 @@ export function Footer() {
           <div>
             <p className="j-text-sm j-font-semibold j-text-white j-mb-8">Stay updated</p>
             <p className="j-text-sm j-text-gray-500 j-mb-20">Get notified when new utilities and features ship.</p>
-            <div className="j-flex j-gap-8 j-mb-28">
+            <div className="j-flex j-flex-wrap j-gap-8 j-mb-28">
               <input
                 type="email"
                 placeholder="you@example.com"
                 className="j-flex-1 j-px-14 j-py-10 j-rounded-lg j-text-sm j-text-white j-outline-none"
-                style={{ background: "#0f172a", border: "1px solid rgba(248,87,166,0.15)", color: "#f1f5f9" }}
+                style={{ background: "#0f172a", border: "1px solid rgba(248,87,166,0.15)", color: "#f1f5f9", minWidth: 160 }}
               />
               <button
                 type="button"

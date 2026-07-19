@@ -15,22 +15,22 @@ export function AnimationDemo() {
   const revealRef = useReveal();
 
   return (
-    <section className="j-py-96 j-px-24 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
+    <section className="j-py-56 lg:j-py-96 j-px-20 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
       <div className="j-container">
-        <div className="reveal j-text-center j-mb-64" ref={revealRef}>
+        <div className="reveal j-text-center j-mb-48 lg:j-mb-64" ref={revealRef}>
           <p className="j-text-sm j-font-semibold j-uppercase j-tracking-widest j-mb-12" style={{ color: "#f857a6" }}>Animations</p>
           <h2
-            className="j-text-5xl j-font-bold j-text-white j-mb-16"
-            style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em" }}
+            className="j-font-bold j-text-white j-mb-16"
+            style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em", fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Built-in motion.
           </h2>
-          <p className="j-text-xl j-text-gray-400 j-max-w-xl j-mx-auto">
+          <p className="j-text-lg j-text-gray-400 j-max-w-xl j-mx-auto">
             Fade, spin, pulse, bounce, ping — drop in animated utilities instantly. No keyframe authoring.
           </p>
         </div>
 
-        <div className="j-flex j-flex-wrap j-justify-center j-gap-48">
+        <div className="j-flex j-flex-wrap j-justify-center j-gap-32 md:j-gap-48">
           {DEMOS.map((d, i) => (
             <div key={d.cls} className={`reveal reveal-delay-${i + 1} j-flex j-flex-col j-items-center j-gap-20`}>
               <div
