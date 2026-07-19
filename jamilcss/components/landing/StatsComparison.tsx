@@ -113,7 +113,6 @@ export function StatsComparison() {
               <div
                 className="j-font-bold j-mb-8"
                 style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.04em", fontSize: "clamp(1.8rem, 5vw, 3.5rem)", background: "linear-gradient(135deg, #f857a6, #ff5858)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
-                style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.04em", background: "linear-gradient(135deg, #f857a6, #ff5858)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
               >
                 <CountUp target={s.value} suffix={s.suffix} />
               </div>
