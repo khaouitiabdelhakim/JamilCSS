@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const DOC_LINKS = [
   { label: "Documentation", href: "/docs" },
@@ -16,19 +17,14 @@ const EXTERNAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="j-border-t" style={{ background: "#030712", borderColor: "rgba(248,87,166,0.08)" }}>
+    <footer className="j-border-t" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
       <div className="j-container j-py-72 j-px-24">
         <div className="j-grid md:j-grid-cols-3 j-gap-48 j-mb-64">
           {/* Col 1: Brand */}
           <div>
-            <Link href="/" className="j-flex j-items-center j-gap-10 j-text-xl j-font-bold j-text-white j-mb-16">
-              <span
-                className="j-flex j-items-center j-justify-center j-w-32 j-h-32 j-rounded-lg j-text-white j-text-sm j-font-black"
-                style={{ background: "linear-gradient(135deg, #f857a6, #ff5858)" }}
-              >
-                J
-              </span>
-              Jamil<span className="brand-gradient-text">CSS</span>
+            <Link href="/" className="j-flex j-items-center j-gap-10 j-text-xl j-font-bold j-text-white j-mb-16 j-transition hover:j-opacity-80">
+              <Image src="/JamilCss.webp" alt="JamilCSS" width={32} height={32} className="j-rounded-lg" />
+              <span className="brand-gradient-text">JamilCSS</span>
             </Link>
             <p className="j-text-sm j-text-gray-500 j-mb-20 j-leading-relaxed">
               Utility-first CSS compiled by PostCSS.<br />
@@ -45,7 +41,7 @@ export function Footer() {
                 className="j-inline-flex j-items-center j-px-10 j-py-4 j-rounded-full j-text-xs j-font-mono"
                 style={{ background: "rgba(255,255,255,0.04)", color: "#64748b", border: "1px solid rgba(255,255,255,0.08)" }}
               >
-                v2.0
+                v{process.env.NEXT_PUBLIC_JAMILCSS_VERSION}
               </span>
             </div>
           </div>

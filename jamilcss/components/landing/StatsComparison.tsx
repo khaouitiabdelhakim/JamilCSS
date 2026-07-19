@@ -100,7 +100,7 @@ export function StatsComparison() {
   };
 
   return (
-    <section className="j-py-96 j-px-24 j-border-y" style={{ background: "#070d1a", borderColor: "rgba(248,87,166,0.08)" }}>
+    <section className="j-py-96 j-px-24 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
       <div className="j-container">
         {/* Stat counters */}
         <div className="reveal j-grid j-grid-cols-3 j-gap-24 j-mb-80 j-text-center" ref={revealRef}>

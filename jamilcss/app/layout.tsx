@@ -1,4 +1,5 @@
 import "./globals.css";
+import { BackgroundOrbs } from "@/components/BackgroundOrbs";
 
 export const metadata = {
   title: "JamilCSS — Utility-first CSS, built your way",
@@ -8,7 +9,8 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body className="j-bg-gray-950 j-text-gray-100">
+      <body className="j-text-gray-100">
+        <BackgroundOrbs />
         {children}
       </body>
     </html>

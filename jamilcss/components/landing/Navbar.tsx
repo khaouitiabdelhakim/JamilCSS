@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const NAV_LINKS = [
@@ -16,22 +17,17 @@ export function Navbar() {
       <header
         className="j-fixed j-top-0 j-left-0 j-right-0 j-z-50 j-h-64 j-flex j-items-center j-border-b"
         style={{
-          background: "rgba(3,7,18,0.85)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+          background: "rgba(3,7,18,0.6)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
           borderColor: "rgba(248,87,166,0.1)",
         }}
       >
         <div className="j-container j-flex j-items-center j-justify-between">
           {/* Logo */}
-          <Link href="/" className="j-flex j-items-center j-gap-10 j-text-xl j-font-bold j-text-white j-select-none">
-            <span
-              className="j-flex j-items-center j-justify-center j-w-32 j-h-32 j-rounded-lg j-text-white j-text-sm j-font-black j-transition hover:j-opacity-80"
-              style={{ background: "linear-gradient(135deg, #f857a6, #ff5858)", boxShadow: "0 0 16px rgba(248,87,166,0.4)" }}
-            >
-              J
-            </span>
-            Jamil<span className="brand-gradient-text">CSS</span>
+          <Link href="/" className="j-flex j-items-center j-gap-10 j-text-xl j-font-bold j-text-white j-select-none j-transition hover:j-opacity-80">
+            <Image src="/JamilCss.webp" alt="JamilCSS" width={32} height={32} className="j-rounded-lg" />
+            <span className="brand-gradient-text">JamilCSS</span>
           </Link>
 
           {/* Desktop nav */}
@@ -68,7 +64,7 @@ export function Navbar() {
               className="j-hidden md:j-inline-flex j-items-center j-px-10 j-py-4 j-rounded-full j-text-xs j-font-mono j-font-semibold"
               style={{ background: "rgba(248,87,166,0.1)", color: "#f857a6", border: "1px solid rgba(248,87,166,0.2)" }}
             >
-              v2.0
+              v{process.env.NEXT_PUBLIC_JAMILCSS_VERSION}
             </span>
             <Link
               href="/docs"

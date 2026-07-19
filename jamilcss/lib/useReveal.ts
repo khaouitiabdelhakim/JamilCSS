@@ -8,14 +8,18 @@ export function useReveal() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const section = el.closest("section") ?? el.parentElement;
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add("visible");
+          const targets = section
+            ? section.querySelectorAll<HTMLElement>(".reveal")
+            : [el];
+          targets.forEach((t) => t.classList.add("visible"));
           obs.disconnect();
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.05 }
     );
     obs.observe(el);
     return () => obs.disconnect();

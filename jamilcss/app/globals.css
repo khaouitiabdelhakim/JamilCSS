@@ -14,7 +14,6 @@ html {
 }
 
 body {
-  background: #030712;
   color: #f1f5f9;
 }
 
@@ -217,6 +216,8 @@ code, pre, kbd, samp { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regul
 .hero-fade-3 { animation: fade-up 0.7s ease-out both; animation-delay: 0.4s; }
 .hero-fade-4 { animation: fade-up 0.7s ease-out both; animation-delay: 0.55s; }
 .hero-fade-5 { animation: fade-up 0.7s ease-out both; animation-delay: 0.7s; }
+.section-orb-left { animation: orb-float 12s ease-in-out infinite; }
+.section-orb-right { animation: orb-drift 16s ease-in-out infinite; }
 
 /* ===== Shiki code blocks ===== */
 .shiki { background: transparent; margin: 0; padding: 1.25rem 1.5rem; font-size: 0.875rem; line-height: 1.7; overflow-x: auto; }

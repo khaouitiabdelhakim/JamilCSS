@@ -15,7 +15,7 @@ export function AnimationDemo() {
   const revealRef = useReveal();
 
   return (
-    <section className="j-py-96 j-px-24 j-border-y" style={{ background: "#070d1a", borderColor: "rgba(248,87,166,0.08)" }}>
+    <section className="j-py-96 j-px-24 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
       <div className="j-container">
         <div className="reveal j-text-center j-mb-64" ref={revealRef}>
           <p className="j-text-sm j-font-semibold j-uppercase j-tracking-widest j-mb-12" style={{ color: "#f857a6" }}>Animations</p>

@@ -63,21 +63,24 @@ function fmt(n: number): string {
   return String(n);
 }
 
-const QUOTES = [
+const IDEAS = [
   {
-    text: "Finally a utility framework that doesn't fight me. The stacked variants are a game changer.",
-    handle: "@dev_marco",
-    role: "Frontend Engineer",
+    icon: "✦",
+    title: "Natural Language CSS",
+    text: "Describe styles the way you think — \"text color red, size 12, bold\" — and JamilCSS maps your intent to the right utility classes. CSS that reads like a conversation.",
+    tag: "Coming soon",
   },
   {
-    text: "Switched from Tailwind to JamilCSS for a project. Loved that any numeric value just works — j-w-237 and it's done.",
-    handle: "@celine_codes",
-    role: "UI Developer",
+    icon: "∞",
+    title: "Limitless by Design",
+    text: "No predefined value tables. No arbitrary-value hacks. Write j-w-237, j-p-48, j-text-23 and it just works. Every number, every unit — truly limitless.",
+    tag: "Core",
   },
   {
-    text: "The PostCSS plugin is seamless. Zero config, zero runtime, zero complaints from my team.",
-    handle: "@raf_builds",
-    role: "Tech Lead",
+    icon: "⬡",
+    title: "Endlessly Extensible",
+    text: "Stack variants, compose utilities, plug into any framework. JamilCSS scales from one component to a full design system — with limitless features still on the horizon.",
+    tag: "Roadmap",
   },
 ];
 
@@ -96,7 +99,7 @@ export async function Community() {
   ];
 
   return (
-    <section className="j-py-96 j-px-24 j-border-y" style={{ background: "#070d1a", borderColor: "rgba(248,87,166,0.08)" }}>
+    <section className="j-py-96 j-px-24 j-border-y" style={{ borderColor: "rgba(248,87,166,0.08)" }}>
       <div className="j-container">
         <div className="j-text-center j-mb-64">
           <p className="j-text-sm j-font-semibold j-uppercase j-tracking-widest j-mb-12" style={{ color: "#f857a6" }}>Community</p>
@@ -164,19 +167,35 @@ export async function Community() {
           </div>
         )}
 
-        {/* Quotes */}
+        {/* Ideas */}
         <div className="j-grid lg:j-grid-cols-3 j-gap-24 j-mb-48">
-          {QUOTES.map((q) => (
+          {IDEAS.map((idea, i) => (
             <div
-              key={q.handle}
-              className="j-p-28 j-rounded-2xl j-border"
+              key={i}
+              className="j-p-28 j-rounded-2xl j-border j-flex j-flex-col j-gap-16"
               style={{ background: "rgba(15,23,42,0.6)", borderColor: "rgba(248,87,166,0.1)" }}
             >
-              <p className="j-text-gray-300 j-leading-relaxed j-mb-20 j-text-sm">&ldquo;{q.text}&rdquo;</p>
-              <div>
-                <p className="j-font-semibold j-text-white j-text-sm">{q.handle}</p>
-                <p className="j-text-xs j-text-gray-500">{q.role}</p>
+              <div className="j-flex j-items-start j-justify-between">
+                <span
+                  className="j-text-2xl j-font-black j-leading-none"
+                  style={{ color: "#f857a6", fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  {idea.icon}
+                </span>
+                <span
+                  className="j-text-xs j-font-semibold j-px-10 j-py-4 j-rounded-full"
+                  style={{ color: "#f857a6", background: "rgba(248,87,166,0.1)", border: "1px solid rgba(248,87,166,0.2)" }}
+                >
+                  {idea.tag}
+                </span>
               </div>
+              <h3
+                className="j-text-lg j-font-bold j-text-white"
+                style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.02em" }}
+              >
+                {idea.title}
+              </h3>
+              <p className="j-text-gray-400 j-leading-relaxed j-text-sm">{idea.text}</p>
             </div>
           ))}
         </div>

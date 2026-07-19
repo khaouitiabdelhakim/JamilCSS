@@ -180,7 +180,7 @@ export function Playground() {
   }, [activeTab]);
 
   return (
-    <section className="j-py-96 j-px-24" style={{ background: "#030712" }}>
+    <section className="j-py-96 j-px-24">
       <div className="j-container">
         <div className="reveal j-text-center j-mb-64" ref={revealRef}>
           <p className="j-text-sm j-font-semibold j-uppercase j-tracking-widest j-mb-12" style={{ color: "#f857a6" }}>Interactive Demo</p>
